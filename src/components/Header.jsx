@@ -2,165 +2,99 @@
 
 'use client'
 
-import { useState } from 'react'
-import { Dialog } from '@headlessui/react'
+import { Fragment } from 'react'
+import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from './LanguageSwitcher';
+import logo from '../assets/einsatz-logo.png';
 
 const navigation = [
-  { name: 'product', href: '#' },
-  { name: 'features', href: '#' },
-  { name: 'marketplace', href: '#' },
-  { name: 'company', href: '#' },
+  { name: 'nav.marketplace', href: '#' },
+  { name: 'nav.about', href: '#' },
+  { name: 'nav.contact', href: '#' }
 ]
 
-export default function Header() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const { i18n, t } = useTranslation(); // Destructure i18n en t
-
-  const changeLanguage = (lng) => {
-    i18n.changeLanguage(lng);
-  };
+export default function Header({ onSignUpClick }) {
+  const { t } = useTranslation();
 
   return (
-    <header className="bg-white shadow">
-      {/* Top Bar met Taalwisselaar */}
-      <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
-        <h1 className="text-3xl font-bold text-gray-900">{t('company_name')}</h1>
-        <div>
-          <button
-            onClick={() => changeLanguage('en')}
-            className={`mx-2 px-3 py-1 rounded ${
-              i18n.language === 'en' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'
-            }`}
-          >
-            EN
-          </button>
-          <button
-            onClick={() => changeLanguage('nl')}
-            className={`mx-2 px-3 py-1 rounded ${
-              i18n.language === 'nl' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'
-            }`}
-          >
-            NL
-          </button>
-        </div>
-      </div>
-
-      {/* Navigatie Menu */}
-      <nav
-        aria-label="Global"
-        className="mx-auto flex max-w-7xl items-center justify-between gap-x-6 p-6 lg:px-8"
-      >
-        {/* Bedrijfslogo */}
-        <div className="flex lg:flex-1">
-          <a href="#" className="-m-1.5 p-1.5">
-            <span className="sr-only">Your Company</span>
-            <img
-              alt="Your Company Logo"
-              src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600"
-              className="h-8 w-auto"
-            />
-          </a>
-        </div>
-
-        {/* Navigatie Links */}
-        <div className="hidden lg:flex lg:gap-x-12">
-          {navigation.map((item) => (
-            <a
-              key={item.name}
-              href={item.href}
-              className="text-sm leading-6 font-semibold text-gray-900"
-            >
-              {t(item.name)}
-            </a>
-          ))}
-        </div>
-
-        {/* Log in en Sign up */}
-        <div className="flex flex-1 items-center justify-end gap-x-6">
-          <a
-            href="#"
-            className="hidden text-sm leading-6 font-semibold text-gray-900 lg:block"
-          >
-            {t('log_in')}
-          </a>
-          <a
-            href="#"
-            className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-          >
-            {t('sign_up')}
-          </a>
-        </div>
-
-        {/* Mobiele Menu Button */}
-        <div className="flex lg:hidden">
-          <button
-            type="button"
-            onClick={() => setMobileMenuOpen(true)}
-            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
-          >
-            <span className="sr-only">Open main menu</span>
-            <Bars3Icon aria-hidden="true" className="h-6 w-6" />
-          </button>
-        </div>
-      </nav>
-
-      {/* Mobiele Menu Dialog */}
-      <Dialog
-        open={mobileMenuOpen}
-        onClose={setMobileMenuOpen}
-        className="lg:hidden"
-      >
-        <div className="fixed inset-0 z-10 bg-black bg-opacity-25" aria-hidden="true" />
-        <Dialog.Panel className="fixed inset-y-0 right-0 z-20 w-full max-w-sm overflow-y-auto bg-white px-6 py-6 shadow-xl">
-          <div className="flex items-center justify-between">
-            <a href="#" className="-m-1.5 p-1.5">
-              <span className="sr-only">Your Company</span>
-              <img
-                alt="Your Company Logo"
-                src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600"
-                className="h-8 w-auto"
-              />
-            </a>
-            <button
-              type="button"
-              onClick={() => setMobileMenuOpen(false)}
-              className="-m-2.5 rounded-md p-2.5 text-gray-700"
-            >
-              <span className="sr-only">Close menu</span>
-              <XMarkIcon aria-hidden="true" className="h-6 w-6" />
-            </button>
-          </div>
-          <div className="mt-6">
-            <nav className="space-y-4">
-              {navigation.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className="block rounded-lg px-3 py-2 text-base leading-7 font-semibold text-gray-900 hover:bg-gray-50"
+    <Disclosure as="nav" className="bg-white shadow">
+      {({ open }) => (
+        <>
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="flex h-16 justify-between">
+              <div className="flex">
+                <div className="flex flex-shrink-0 items-center">
+                  <img
+                    className="h-8 w-auto mr-2"
+                    src={logo}
+                    alt="Einsatz"
+                  />
+                  <span className="text-xl font-semibold text-gray-900">Einsatz</span>
+                </div>
+                <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
+                  {navigation.map((item) => (
+                    <a
+                      key={item.name}
+                      href={item.href}
+                      className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                    >
+                      {t(item.name)}
+                    </a>
+                  ))}
+                </div>
+              </div>
+              <div className="hidden sm:ml-6 sm:flex sm:items-center">
+                <LanguageSwitcher />
+                <button
+                  type="button"
+                  onClick={onSignUpClick}
+                  className="ml-6 inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
-                  {t(item.name)}
-                </a>
-              ))}
-              <a
-                href="#"
-                className="block rounded-lg px-3 py-2.5 text-base leading-7 font-semibold text-gray-900 hover:bg-gray-50"
-              >
-                {t('log_in')}
-              </a>
-            </nav>
-            <div className="mt-6">
-              <a
-                href="#"
-                className="block w-full rounded-md bg-indigo-600 px-3 py-2 text-center text-base leading-7 font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              >
-                {t('sign_up')}
-              </a>
+                  {t('nav.signup')}
+                </button>
+              </div>
+              <div className="-mr-2 flex items-center sm:hidden">
+                <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                  <span className="absolute -inset-0.5" />
+                  <span className="sr-only">Open main menu</span>
+                  {open ? (
+                    <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
+                  ) : (
+                    <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
+                  )}
+                </Disclosure.Button>
+              </div>
             </div>
           </div>
-        </Dialog.Panel>
-      </Dialog>
-    </header>
-  )
+
+          <Disclosure.Panel className="sm:hidden">
+            <div className="space-y-1 pb-3 pt-2">
+              {navigation.map((item) => (
+                <Disclosure.Button
+                  key={item.name}
+                  as="a"
+                  href={item.href}
+                  className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
+                >
+                  {t(item.name)}
+                </Disclosure.Button>
+              ))}
+              <div className="flex items-center justify-between px-4 py-3">
+                <LanguageSwitcher />
+                <button
+                  type="button"
+                  onClick={onSignUpClick}
+                  className="inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                >
+                  {t('nav.signup')}
+                </button>
+              </div>
+            </div>
+          </Disclosure.Panel>
+        </>
+      )}
+    </Disclosure>
+  );
 }

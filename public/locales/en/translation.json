@@ -52,15 +52,97 @@
     "title": "Sign up as Freelancer",
     "nameLabel": "Name",
     "emailLabel": "Email",
-    "locationLabel": "Location",
-    "skillsLabel": "Skills",
-    "bioLabel": "Short Bio",
-    "portfolioLabel": "Portfolio Link",
-    "submitBtn": "Sign Up",
+    "basicInfo": "Basic Information",
+    "workPreferences": "Work Preferences",
+    "addAnother": "Add Another",
+    "preference": "Preference",
+    "industryLabel": "Industry",
+    "workTypeLabel": "Work Type",
+    "specialtyLabel": "Specialty Details",
+    "experienceLabel": "Experience",
+    "selectIndustry": "Select Industry",
+    "selectWorkType": "Select Work Type",
+    "specialtyPlaceholder": "Describe your specific expertise in this area...",
+    "experiencePlaceholder": "Describe your relevant experience...",
+    "cancel": "Cancel",
+    "submit": "Submit",
+
+    "industries": {
+      "tech": "Technology",
+      "finance": "Finance",
+      "healthcare": "Healthcare",
+      "education": "Education",
+      "retail": "Retail"
+    },
+
+    "workTypes": {
+      "tech": {
+        "software_dev": "Software Development",
+        "data_science": "Data Science",
+        "ui_ux": "UI/UX Design",
+        "devops": "DevOps"
+      },
+      "finance": {
+        "accounting": "Accounting",
+        "financial_analysis": "Financial Analysis",
+        "investment": "Investment Management"
+      },
+      "healthcare": {
+        "nursing": "Nursing",
+        "medical_admin": "Medical Administration",
+        "health_tech": "Healthcare Technology"
+      },
+      "education": {
+        "teaching": "Teaching",
+        "curriculum_dev": "Curriculum Development",
+        "ed_tech": "Educational Technology"
+      },
+      "retail": {
+        "sales": "Sales",
+        "inventory": "Inventory Management",
+        "ecommerce": "E-commerce"
+      }
+    },
 
     "errors": {
       "required": "This field is required",
       "invalidEmail": "Invalid email address"
     }
+  },
+
+  "filterBar": {
+    "title": "Filters",
+    "sort": {
+      "label": "Sort",
+      "most_popular": "Most Popular",
+      "best_rating": "Best Rating",
+      "newest": "Newest"
+    },
+    "filters": {
+      "industry": "Industry",
+      "workType": "Work Type",
+      "apply": "Apply Filters",
+      "clear": "Clear Filters",
+      "mobileTitle": "Filters",
+      "close": "Close filters"
+    }
+  },
+
+  "marketplace": {
+    "title": "Find Your Perfect Freelancer",
+    "subtitle": "Ready - Set - Go"
+  },
+
+  "nav": {
+    "marketplace": "Marketplace",
+    "about": "About",
+    "contact": "Contact",
+    "signup": "Sign Up"
+  },
+
+  "profileCard": {
+    "workPreferences": "Work Preferences",
+    "specialty": "Specialty",
+    "experience": "Experience"
   }
 }

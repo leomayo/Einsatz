@@ -52,15 +52,99 @@
     "title": "Aanmelden als Freelancer",
     "nameLabel": "Naam",
     "emailLabel": "Email",
-    "locationLabel": "Locatie",
-    "skillsLabel": "Vaardigheden",
-    "bioLabel": "Kort over jezelf",
-    "portfolioLabel": "Mijn portfolio",
-    "submitBtn": "Aanmelden",
+    "basicInfo": "Basis Informatie",
+    "workPreferences": "Werkvoorkeuren",
+    "addAnother": "Nog Een Toevoegen",
+    "preference": "Voorkeur",
+    "industryLabel": "Industrie",
+    "workTypeLabel": "Type Werk",
+    "specialtyLabel": "Specialistische Details",
+    "experienceLabel": "Ervaring",
+    "selectIndustry": "Selecteer Industrie",
+    "selectWorkType": "Selecteer Type Werk",
+    "specialtyPlaceholder": "Beschrijf je specifieke expertise op dit gebied...",
+    "experiencePlaceholder": "Beschrijf je relevante ervaring...",
+    "cancel": "Annuleren",
+    "submit": "Versturen",
+
+    "industries": {
+      "tech": "Technologie",
+      "finance": "Financiën",
+      "healthcare": "Gezondheidszorg",
+      "education": "Onderwijs",
+      "retail": "Retail"
+    },
+
+    "workTypes": {
+      "tech": {
+        "software_dev": "Software Ontwikkeling",
+        "data_science": "Data Science",
+        "ui_ux": "UI/UX Design",
+        "devops": "DevOps"
+      },
+      "finance": {
+        "accounting": "Boekhouding",
+        "financial_analysis": "Financiële Analyse",
+        "investment": "Investeringsbeheer"
+      },
+      "healthcare": {
+        "nursing": "Verpleging",
+        "medical_admin": "Medische Administratie",
+        "health_tech": "Gezondheidstechnologie"
+      },
+      "education": {
+        "teaching": "Lesgeven",
+        "curriculum_dev": "Curriculum Ontwikkeling",
+        "ed_tech": "Onderwijstechnologie"
+      },
+      "retail": {
+        "sales": "Verkoop",
+        "inventory": "Voorraadbeheer",
+        "ecommerce": "E-commerce"
+      }
+    },
 
     "errors": {
       "required": "Dit veld is verplicht",
-      "invalidEmail": "Onjuist emailadres"
+      "invalidEmail": "Ongeldig emailadres"
     }
+  },
+
+  "filterBar": {
+    "title": "Filters",
+    "sort": {
+      "label": "Sorteren",
+      "most_popular": "Meest Populair",
+      "best_rating": "Beste Beoordeling",
+      "newest": "Nieuwste"
+    },
+    "filters": {
+      "industry": "Industrie",
+      "workType": "Type Werk",
+      "apply": "Filters Toepassen",
+      "clear": "Filters Wissen",
+      "mobileTitle": "Filters",
+      "close": "Filters sluiten"
+    }
+  },
+
+  "marketplace": {
+    "title": "Vind Je Perfecte Freelancer",
+    "subtitle": "Klaar - Af - Gaan"
+  },
+
+  "product_filters": "Productfilters",
+  "sort": "Sorteren",
+  "nav": {
+    "marketplace": "Marktplaats",
+    "about": "Over",
+    "contact": "Contact",
+    "signup": "Aanmelden"
+  },
+
+  "profileCard": {
+    "workPreferences": "Werkvoorkeuren",
+    "specialty": "Specialiteit",
+    "experience": "Ervaring"
   }
 }
