@@ -50,81 +50,69 @@
    
   "freelancerSignUp": {
     "title": "Aanmelden als Freelancer",
-    "nameLabel": "Naam",
-    "emailLabel": "Email",
-    "basicInfo": "Basis Informatie",
-    "workPreferences": "Werkvoorkeuren",
-    "addAnother": "Nog Een Toevoegen",
-    "preference": "Voorkeur",
-    "industryLabel": "Industrie",
-    "workTypeLabel": "Type Werk",
-    "specialtyLabel": "Specialistische Details",
-    "experienceLabel": "Ervaring",
-    "selectIndustry": "Selecteer Industrie",
-    "selectWorkType": "Selecteer Type Werk",
-    "specialtyPlaceholder": "Beschrijf je specifieke expertise op dit gebied...",
-    "experiencePlaceholder": "Beschrijf je relevante ervaring...",
+    "name": "Naam",
+    "email": "E-mail",
+    "submit": "Aanmelden",
     "cancel": "Annuleren",
-    "submit": "Versturen",
-
+    "specialtyLabel": "Specialisatie",
+    "experienceLabel": "Ervaring",
+    "workPreferences": "Werkvoorkeuren",
+    "workPreferencesForm": {
+      "title": "Werkvoorkeuren",
+      "description": "Voeg je werkvoorkeuren toe om de beste matches te vinden",
+      "addNew": "Nieuwe Werkvoorkeur",
+      "addAnother": "Nog een Werkvoorkeur Toevoegen",
+      "remove": "Verwijderen",
+      "selectIndustry": "Selecteer Branche",
+      "selectWorkType": "Selecteer Type Werk",
+      "chooseIndustry": "Kies een branche...",
+      "chooseWorkType": "Kies een type werk..."
+    },
     "industries": {
       "tech": "Technologie",
       "finance": "Financiën",
       "healthcare": "Gezondheidszorg",
       "education": "Onderwijs",
-      "retail": "Retail"
+      "retail": "Detailhandel"
     },
-
     "workTypes": {
       "tech": {
-        "software_dev": "Software Ontwikkeling",
+        "software_dev": "Softwareontwikkeling",
         "data_science": "Data Science",
-        "ui_ux": "UI/UX Design",
-        "devops": "DevOps"
+        "cloud_engineering": "Cloud Engineering"
       },
       "finance": {
-        "accounting": "Boekhouding",
         "financial_analysis": "Financiële Analyse",
-        "investment": "Investeringsbeheer"
+        "investment_banking": "Investment Banking",
+        "risk_management": "Risicobeheer"
       },
       "healthcare": {
-        "nursing": "Verpleging",
-        "medical_admin": "Medische Administratie",
-        "health_tech": "Gezondheidstechnologie"
+        "medical_research": "Medisch Onderzoek",
+        "healthcare_it": "Gezondheidszorg IT",
+        "clinical_practice": "Klinische Praktijk"
       },
       "education": {
         "teaching": "Lesgeven",
-        "curriculum_dev": "Curriculum Ontwikkeling",
-        "ed_tech": "Onderwijstechnologie"
+        "curriculum_development": "Curriculumontwikkeling",
+        "educational_technology": "Onderwijstechnologie",
+        "student_counseling": "Studentenbegeleiding"
       },
       "retail": {
         "sales": "Verkoop",
-        "inventory": "Voorraadbeheer",
+        "inventory_management": "Voorraadbeheer",
+        "visual_merchandising": "Visual Merchandising",
         "ecommerce": "E-commerce"
       }
-    },
-
-    "errors": {
-      "required": "Dit veld is verplicht",
-      "invalidEmail": "Ongeldig emailadres"
     }
   },
 
   "filterBar": {
-    "title": "Filters",
-    "sort": {
-      "label": "Sorteren",
-      "most_popular": "Meest Populair",
-      "best_rating": "Beste Beoordeling",
-      "newest": "Nieuwste"
-    },
+    "title": "Beschikbare Freelancers",
     "filters": {
-      "industry": "Industrie",
-      "workType": "Type Werk",
-      "apply": "Filters Toepassen",
-      "clear": "Filters Wissen",
-      "mobileTitle": "Filters",
-      "close": "Filters sluiten"
+      "title": "Filters",
+      "close": "Filters sluiten",
+      "industries": "Branches",
+      "workTypes": "Werksoorten"
     }
   },
 
@@ -143,8 +131,11 @@
   },
 
   "profileCard": {
-    "workPreferences": "Werkvoorkeuren",
-    "specialty": "Specialiteit",
-    "experience": "Ervaring"
+    "workPreferences": "Werkvoorkeuren"
+  },
+
+  "hero": {
+    "title": "Vind de Perfecte Freelancer",
+    "subtitle": "Maak verbinding met ervaren professionals die uw bedrijf helpen groeien"
   }
 }

@@ -23,7 +23,7 @@ const ProfileCard = ({ profile }) => {
         {/* Work Preferences Section */}
         <div className="mt-6">
           <h4 className="text-md font-medium text-gray-900 mb-3">
-            {t('freelancerSignUp.workPreferences')}
+            {t('profileCard.workPreferences')}
           </h4>
           <div className="space-y-4">
             {profile.workPreferences.map((pref, index) => (

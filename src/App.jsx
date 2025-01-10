@@ -1,6 +1,7 @@
 // App.jsx
 import React, { useState, useMemo, useEffect } from 'react';
 import Header from './components/Header';
+import Hero from './components/Hero';
 import FilterBar from './components/FilterBar';
 import ProfileCardList from './components/ProfileCardList';
 import FreelancerSignUp from './components/FreelancerSignUp';
@@ -73,6 +74,7 @@ function App() {
   return (
     <div className="min-h-screen bg-gray-100">
       <Header onSignUpClick={() => setIsSignUpOpen(true)} />
+      <Hero />
       <FilterBar 
         selectedFilters={selectedFilters}
         onFilterChange={handleFilterChange}

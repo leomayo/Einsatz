@@ -49,24 +49,27 @@
   "submit": "Sign Up",
 
   "freelancerSignUp": {
-    "title": "Sign up as Freelancer",
-    "nameLabel": "Name",
-    "emailLabel": "Email",
-    "basicInfo": "Basic Information",
-    "workPreferences": "Work Preferences",
-    "addAnother": "Add Another",
-    "preference": "Preference",
-    "industryLabel": "Industry",
-    "workTypeLabel": "Work Type",
-    "specialtyLabel": "Specialty Details",
-    "experienceLabel": "Experience",
-    "selectIndustry": "Select Industry",
-    "selectWorkType": "Select Work Type",
-    "specialtyPlaceholder": "Describe your specific expertise in this area...",
-    "experiencePlaceholder": "Describe your relevant experience...",
-    "cancel": "Cancel",
+    "title": "Sign Up as Freelancer",
+    "name": "Name",
+    "email": "Email",
     "submit": "Submit",
-
+    "cancel": "Cancel",
+    "specialtyLabel": "Specialty",
+    "experienceLabel": "Experience",
+    "workPreferences": {
+      "title": "Work Preferences",
+      "description": "Add your work preferences to find the best matches",
+      "addNew": "New Work Preference",
+      "addAnother": "Add Another Work Preference",
+      "remove": "Remove",
+      "selectIndustry": "Select Industry",
+      "selectWorkType": "Select Work Type",
+      "chooseIndustry": "Choose an industry...",
+      "chooseWorkType": "Choose a work type...",
+      "specialtyNote": "Specialty",
+      "experienceNote": "Experience",
+      "text": "Work Preferences"
+    },
     "industries": {
       "tech": "Technology",
       "finance": "Finance",
@@ -74,57 +77,44 @@
       "education": "Education",
       "retail": "Retail"
     },
-
     "workTypes": {
       "tech": {
         "software_dev": "Software Development",
         "data_science": "Data Science",
-        "ui_ux": "UI/UX Design",
-        "devops": "DevOps"
+        "cloud_engineering": "Cloud Engineering"
       },
       "finance": {
-        "accounting": "Accounting",
         "financial_analysis": "Financial Analysis",
-        "investment": "Investment Management"
+        "investment_banking": "Investment Banking",
+        "risk_management": "Risk Management"
       },
       "healthcare": {
-        "nursing": "Nursing",
-        "medical_admin": "Medical Administration",
-        "health_tech": "Healthcare Technology"
+        "medical_research": "Medical Research",
+        "healthcare_it": "Healthcare IT",
+        "clinical_practice": "Clinical Practice"
       },
       "education": {
         "teaching": "Teaching",
-        "curriculum_dev": "Curriculum Development",
-        "ed_tech": "Educational Technology"
+        "curriculum_development": "Curriculum Development",
+        "educational_technology": "Educational Technology",
+        "student_counseling": "Student Counseling"
       },
       "retail": {
         "sales": "Sales",
-        "inventory": "Inventory Management",
+        "inventory_management": "Inventory Management",
+        "visual_merchandising": "Visual Merchandising",
         "ecommerce": "E-commerce"
       }
-    },
-
-    "errors": {
-      "required": "This field is required",
-      "invalidEmail": "Invalid email address"
     }
   },
 
   "filterBar": {
-    "title": "Filters",
-    "sort": {
-      "label": "Sort",
-      "most_popular": "Most Popular",
-      "best_rating": "Best Rating",
-      "newest": "Newest"
-    },
+    "title": "Available Freelancers",
     "filters": {
-      "industry": "Industry",
-      "workType": "Work Type",
-      "apply": "Apply Filters",
-      "clear": "Clear Filters",
-      "mobileTitle": "Filters",
-      "close": "Close filters"
+      "title": "Filters",
+      "close": "Close filters",
+      "industries": "Industries",
+      "workTypes": "Work Types"
     }
   },
 
@@ -144,5 +134,10 @@
     "workPreferences": "Work Preferences",
     "specialty": "Specialty",
     "experience": "Experience"
+  },
+
+  "hero": {
+    "title": "Find the Perfect Freelancer",
+    "subtitle": "Connect with skilled professionals ready to help your business grow"
   }
 }
