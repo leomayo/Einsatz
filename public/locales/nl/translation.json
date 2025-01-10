@@ -56,7 +56,6 @@
     "cancel": "Annuleren",
     "specialtyLabel": "Specialisatie",
     "experienceLabel": "Ervaring",
-    "workPreferences": "Werkvoorkeuren",
     "workPreferencesForm": {
       "title": "Werkvoorkeuren",
       "description": "Voeg je werkvoorkeuren toe om de beste matches te vinden",
@@ -131,11 +130,18 @@
   },
 
   "profileCard": {
-    "workPreferences": "Werkvoorkeuren"
+    "workPreferences": "Werkvoorkeuren",
+    "specialty": "Specialisatie",
+    "experience": "Ervaring"
   },
 
   "hero": {
     "title": "Vind de Perfecte Freelancer",
     "subtitle": "Maak verbinding met ervaren professionals die uw bedrijf helpen groeien"
+  },
+
+  "app": {
+    "title": "Freelancer Platform",
+    "description": "Vind de beste freelance mogelijkheden"
   }
 }

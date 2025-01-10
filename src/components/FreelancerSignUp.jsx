@@ -11,7 +11,7 @@ const nlTranslations = {
     email: "E-mail",
     submit: "Aanmelden",
     cancel: "Annuleren",
-    workPreferences: {
+    workPreferencesForm: {
       title: "Werkvoorkeuren",
       description: "Voeg je werkvoorkeuren toe om de beste matches te vinden",
       addNew: "Nieuwe Werkvoorkeur",
@@ -171,10 +171,10 @@ export default function FreelancerSignUp({ isOpen, onClose, onSignUp }) {
 
                     <div className="border-b border-gray-900/10 pb-12">
                       <h2 className="text-base/7 font-semibold text-gray-900">
-                        {t('freelancerSignUp.workPreferences.title')}
+                        {t('freelancerSignUp.workPreferencesForm.title')}
                       </h2>
                       <p className="mt-1 text-sm/6 text-gray-600">
-                        {t('freelancerSignUp.workPreferences.description')}
+                        {t('freelancerSignUp.workPreferencesForm.description')}
                       </p>
 
                       <div className="mt-10 space-y-8">
@@ -183,7 +183,7 @@ export default function FreelancerSignUp({ isOpen, onClose, onSignUp }) {
                             <div className="grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-2">
                               <div>
                                 <label className="block text-sm/6 font-medium text-gray-900">
-                                  {t('freelancerSignUp.workPreferences.selectIndustry')}
+                                  {t('freelancerSignUp.workPreferencesForm.selectIndustry')}
                                 </label>
                                 <p className="mt-1 text-sm/6 text-gray-700">
                                   {t(`freelancerSignUp.industries.${pref.industry}`)}
@@ -191,7 +191,7 @@ export default function FreelancerSignUp({ isOpen, onClose, onSignUp }) {
                               </div>
                               <div>
                                 <label className="block text-sm/6 font-medium text-gray-900">
-                                  {t('freelancerSignUp.workPreferences.selectWorkType')}
+                                  {t('freelancerSignUp.workPreferencesForm.selectWorkType')}
                                 </label>
                                 <p className="mt-1 text-sm/6 text-gray-700">
                                   {t(`freelancerSignUp.workTypes.${pref.industry}.${pref.workType}`)}
@@ -199,7 +199,7 @@ export default function FreelancerSignUp({ isOpen, onClose, onSignUp }) {
                               </div>
                               <div className="sm:col-span-2">
                                 <label className="block text-sm/6 font-medium text-gray-900">
-                                  {t('freelancerSignUp.workPreferences.specialtyNote')}
+                                  {t('freelancerSignUp.workPreferencesForm.specialtyNote')}
                                 </label>
                                 <div className="mt-2">
                                   <input
@@ -216,7 +216,7 @@ export default function FreelancerSignUp({ isOpen, onClose, onSignUp }) {
                               </div>
                               <div className="sm:col-span-2">
                                 <label className="block text-sm/6 font-medium text-gray-900">
-                                  {t('freelancerSignUp.workPreferences.experienceNote')}
+                                  {t('freelancerSignUp.workPreferencesForm.experienceNote')}
                                 </label>
                                 <div className="mt-2">
                                   <input
@@ -243,7 +243,7 @@ export default function FreelancerSignUp({ isOpen, onClose, onSignUp }) {
                                 }}
                                 className="text-sm/6 font-semibold text-red-600 hover:text-red-500"
                               >
-                                {t('freelancerSignUp.workPreferences.remove')}
+                                {t('freelancerSignUp.workPreferencesForm.remove')}
                               </button>
                             </div>
                           </div>
@@ -252,13 +252,13 @@ export default function FreelancerSignUp({ isOpen, onClose, onSignUp }) {
                         {isAddingNew ? (
                           <div className="rounded-md bg-gray-50/50 p-4 outline outline-1 outline-gray-900/10">
                             <h3 className="text-sm/6 font-semibold text-gray-900">
-                              {t('freelancerSignUp.workPreferences.addNew')}
+                              {t('freelancerSignUp.workPreferencesForm.addNew')}
                             </h3>
                             
                             <div className="mt-4 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-2">
                               <div className="sm:col-span-2">
                                 <label className="block text-sm/6 font-medium text-gray-900">
-                                  {t('freelancerSignUp.workPreferences.selectIndustry')}
+                                  {t('freelancerSignUp.workPreferencesForm.selectIndustry')}
                                 </label>
                                 <div className="mt-2 grid grid-cols-1">
                                   <select
@@ -266,7 +266,7 @@ export default function FreelancerSignUp({ isOpen, onClose, onSignUp }) {
                                     onChange={(e) => setSelectedIndustry(e.target.value)}
                                     className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pl-3 pr-8 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                                   >
-                                    <option value="">{t('freelancerSignUp.workPreferences.chooseIndustry')}</option>
+                                    <option value="">{t('freelancerSignUp.workPreferencesForm.chooseIndustry')}</option>
                                     {['tech', 'finance', 'healthcare', 'education', 'retail'].map(industry => (
                                       <option key={industry} value={industry}>
                                         {t(`freelancerSignUp.industries.${industry}`)}
@@ -283,7 +283,7 @@ export default function FreelancerSignUp({ isOpen, onClose, onSignUp }) {
                               {selectedIndustry && (
                                 <div className="sm:col-span-2">
                                   <label className="block text-sm/6 font-medium text-gray-900">
-                                    {t('freelancerSignUp.workPreferences.selectWorkType')}
+                                    {t('freelancerSignUp.workPreferencesForm.selectWorkType')}
                                   </label>
                                   <div className="mt-2 grid grid-cols-1">
                                     <select
@@ -296,7 +296,7 @@ export default function FreelancerSignUp({ isOpen, onClose, onSignUp }) {
                                       className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pl-3 pr-8 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                                       defaultValue=""
                                     >
-                                      <option value="">{t('freelancerSignUp.workPreferences.chooseWorkType')}</option>
+                                      <option value="">{t('freelancerSignUp.workPreferencesForm.chooseWorkType')}</option>
                                       {getWorkTypesForIndustry(selectedIndustry).map(workType => (
                                         <option key={workType} value={workType}>
                                           {t(`freelancerSignUp.workTypes.${selectedIndustry}.${workType}`)}
@@ -318,7 +318,7 @@ export default function FreelancerSignUp({ isOpen, onClose, onSignUp }) {
                             onClick={startAddingNew}
                             className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
                           >
-                            {t('freelancerSignUp.workPreferences.addAnother')}
+                            {t('freelancerSignUp.workPreferencesForm.addAnother')}
                           </button>
                         )}
                       </div>

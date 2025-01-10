@@ -56,7 +56,7 @@
     "cancel": "Cancel",
     "specialtyLabel": "Specialty",
     "experienceLabel": "Experience",
-    "workPreferences": {
+    "workPreferencesForm": {
       "title": "Work Preferences",
       "description": "Add your work preferences to find the best matches",
       "addNew": "New Work Preference",
@@ -65,10 +65,7 @@
       "selectIndustry": "Select Industry",
       "selectWorkType": "Select Work Type",
       "chooseIndustry": "Choose an industry...",
-      "chooseWorkType": "Choose a work type...",
-      "specialtyNote": "Specialty",
-      "experienceNote": "Experience",
-      "text": "Work Preferences"
+      "chooseWorkType": "Choose a work type..."
     },
     "industries": {
       "tech": "Technology",
@@ -139,5 +136,10 @@
   "hero": {
     "title": "Find the Perfect Freelancer",
     "subtitle": "Connect with skilled professionals ready to help your business grow"
+  },
+
+  "app": {
+    "title": "Freelancer Platform",
+    "description": "Find the best freelance opportunities"
   }
 }
