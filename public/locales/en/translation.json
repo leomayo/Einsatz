@@ -141,5 +141,15 @@
   "app": {
     "title": "Freelancer Platform",
     "description": "Find the best freelance opportunities"
+  },
+
+  "filters": {
+    "availability": {
+      "label": "Availability",
+      "placeholder": "Select dates",
+      "nextWeek": "Any time in next 7 days",
+      "selectRange": "Select date range",
+      "selectDay": "Select specific day"
+    }
   }
 }

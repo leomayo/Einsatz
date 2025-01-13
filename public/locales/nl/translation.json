@@ -143,5 +143,15 @@
   "app": {
     "title": "Freelancer Platform",
     "description": "Vind de beste freelance mogelijkheden"
+  },
+
+  "filters": {
+    "availability": {
+      "label": "Beschikbaarheid",
+      "placeholder": "Selecteer data",
+      "nextWeek": "Binnen 7 dagen",
+      "selectRange": "Selecteer periode",
+      "selectDay": "Selecteer specifieke dag"
+    }
   }
 }

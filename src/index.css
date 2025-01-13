@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Add these to your existing styles */
+.rdp {
+  --rdp-cell-size: 40px !important;
+  --rdp-accent-color: rgb(79 70 229) !important;
+  --rdp-background-color: rgb(238 242 255) !important;
+  margin: 0 !important;
+}
+
+.rdp-wrapper {
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.rdp-dropdown {
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+}

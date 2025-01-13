@@ -14,6 +14,7 @@ import {
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import { CheckCircleIcon } from '@heroicons/react/20/solid';
+import AvailabilityFilter from './filters/AvailabilityFilter';
 
 const filters = [
   {
@@ -45,6 +46,10 @@ const filters = [
 export default function FilterBar({ selectedFilters, onFilterChange }) {
   const { t } = useTranslation();
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+
+  const handleAvailabilityChange = (availability) => {
+    onFilterChange('availability', availability);
+  };
 
   return (
     <div className="bg-white">
@@ -159,6 +164,7 @@ export default function FilterBar({ selectedFilters, onFilterChange }) {
                   </Transition>
                 </Popover>
               )}
+              <AvailabilityFilter onChange={handleAvailabilityChange} />
             </Popover.Group>
           </div>
         </div>
