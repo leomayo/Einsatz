@@ -29,11 +29,13 @@ const nlTranslations = {
 
 export default function FreelancerSignUp({ isOpen, onClose, onSignUp }) {
   const { t, i18n } = useTranslation('translation', { useSuspense: false });
-  const [formData, setFormData] = useState({
+  const initialFormData = {
     name: '',
     email: '',
     workPreferences: []
-  });
+  };
+  
+  const [formData, setFormData] = useState(initialFormData);
   const [selectedIndustry, setSelectedIndustry] = useState('');
   const [isAddingNew, setIsAddingNew] = useState(true);
   
@@ -47,10 +49,29 @@ export default function FreelancerSignUp({ isOpen, onClose, onSignUp }) {
   console.log('Current language:', i18n.language);
   console.log('Title should be:', i18n.store.data?.nl?.translation?.freelancerSignUp?.title);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    onSignUp(formData);
+    
+    try {
+      await onSignUp(formData);
+      // Reset form
+      setFormData(initialFormData);
+      setSelectedIndustry('');
+      setIsAddingNew(true);
+      onClose();
+    } catch (error) {
+      console.error('Error signing up:', error);
+    }
   };
+
+  // Reset form when dialog is opened
+  useEffect(() => {
+    if (isOpen) {
+      setFormData(initialFormData);
+      setSelectedIndustry('');
+      setIsAddingNew(true);
+    }
+  }, [isOpen]);
 
   const handleWorkPreferenceChange = (industry, workType, specialtyNote = '', experienceNote = '') => {
     setFormData(prev => {

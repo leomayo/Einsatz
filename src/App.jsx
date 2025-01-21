@@ -6,6 +6,7 @@ import FilterBar from './components/FilterBar';
 import ProfileCardList from './components/ProfileCardList';
 import FreelancerSignUp from './components/FreelancerSignUp';
 import useStore from './store/useStore';
+import { useTranslation } from 'react-i18next';
 
 function App() {
   const [isSignUpOpen, setIsSignUpOpen] = useState(false);
@@ -16,6 +17,7 @@ function App() {
     industry: [],
     workType: []
   });
+  const { t } = useTranslation();
 
   // Simulate initial loading
   useEffect(() => {
@@ -75,11 +77,14 @@ function App() {
     <div className="min-h-screen bg-gray-100">
       <Header onSignUpClick={() => setIsSignUpOpen(true)} />
       <Hero />
-      <FilterBar 
-        selectedFilters={selectedFilters}
-        onFilterChange={handleFilterChange}
-      />
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="container mx-auto py-10 px-4">
+        <div className="mb-8">
+          <FilterBar 
+            profiles={profiles} 
+            onFilterChange={handleFilterChange} 
+          />
+        </div>
+        
         <ProfileCardList 
           data={filteredProfiles} 
           isLoading={isLoading}

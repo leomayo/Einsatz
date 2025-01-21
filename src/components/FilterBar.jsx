@@ -1,6 +1,6 @@
 // src/components/FilterBar.jsx
 
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { 
   Dialog, 
@@ -9,7 +9,8 @@ import {
   Transition,
   PopoverButton,
   PopoverPanel,
-  PopoverGroup 
+  PopoverGroup,
+  Menu
 } from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
@@ -43,132 +44,110 @@ const filters = [
   }
 ];
 
-export default function FilterBar({ selectedFilters, onFilterChange }) {
+export default function FilterBar({ profiles, onFilterChange }) {
   const { t } = useTranslation();
-  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+
+  // Get unique industries and workTypes from all profiles
+  const { industries, workTypes } = useMemo(() => {
+    const uniqueIndustries = new Set();
+    const workTypesByIndustry = {};
+
+    profiles?.forEach(profile => {
+      profile.workPreferences.forEach(pref => {
+        uniqueIndustries.add(pref.industry);
+        
+        if (!workTypesByIndustry[pref.industry]) {
+          workTypesByIndustry[pref.industry] = new Set();
+        }
+        workTypesByIndustry[pref.industry].add(pref.workType);
+      });
+    });
+
+    return {
+      industries: Array.from(uniqueIndustries),
+      workTypes: Object.fromEntries(
+        Object.entries(workTypesByIndustry).map(([industry, types]) => [
+          industry,
+          Array.from(types)
+        ])
+      )
+    };
+  }, [profiles]);
+
+  const handleIndustryChange = (industry) => {
+    onFilterChange('industry', industry);
+  };
+
+  const handleWorkTypeChange = (workType) => {
+    onFilterChange('workType', workType);
+  };
 
   const handleAvailabilityChange = (availability) => {
     onFilterChange('availability', availability);
   };
 
   return (
-    <div className="bg-white">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-12">
-          <h2 className="text-lg font-medium text-gray-900">{t('filterBar.title')}</h2>
+    <div className="flex gap-4 items-center">
+      <Menu as="div" className="relative">
+        <Menu.Button className="flex items-center gap-2 px-3 py-2 text-sm rounded-md bg-white border border-gray-300 hover:bg-gray-50">
+          <span>Industry</span>
+          <ChevronDownIcon className="h-5 w-5 text-gray-400" />
+        </Menu.Button>
 
-          <div className="flex items-center">
-            <Popover.Group className="hidden lg:flex lg:items-center lg:justify-end lg:space-x-6">
-              {/* Industry filter */}
-              <Popover className="relative inline-block px-4">
-                <Popover.Button className="group inline-flex items-center justify-center text-sm font-medium text-gray-700 hover:text-gray-900">
-                  <span>{t('filterBar.filters.industries')}</span>
-                  <ChevronDownIcon
-                    className="ml-2 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
-                    aria-hidden="true"
-                  />
-                </Popover.Button>
-
-                <Transition
-                  as={Fragment}
-                  enter="transition ease-out duration-100"
-                  enterFrom="transform opacity-0 scale-95"
-                  enterTo="transform opacity-100 scale-100"
-                  leave="transition ease-in duration-75"
-                  leaveFrom="transform opacity-100 scale-100"
-                  leaveTo="transform opacity-0 scale-95"
-                >
-                  <Popover.Panel className="absolute right-0 z-10 mt-2 origin-top-right rounded-md bg-white p-4 shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none">
-                    <form className="space-y-4">
-                      {filters[0].options.map((option, optionIdx) => (
-                        <div key={optionIdx} className="flex items-center">
-                          <input
-                            id={`filter-industry-${optionIdx}`}
-                            name="industry[]"
-                            value={option.value}
-                            type="checkbox"
-                            checked={selectedFilters.industry.includes(option.value)}
-                            onChange={(e) => onFilterChange('industry', option.value, e.target.checked)}
-                            className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                          />
-                          <label
-                            htmlFor={`filter-industry-${optionIdx}`}
-                            className="ml-3 whitespace-nowrap pr-6 text-sm font-medium text-gray-900"
-                          >
-                            {t(option.label)}
-                          </label>
-                        </div>
-                      ))}
-                    </form>
-                  </Popover.Panel>
-                </Transition>
-              </Popover>
-
-              {/* Work Type filter - only show if industries are selected */}
-              {selectedFilters.industry.length > 0 && (
-                <Popover className="relative inline-block px-4">
-                  <Popover.Button className="group inline-flex items-center justify-center text-sm font-medium text-gray-700 hover:text-gray-900">
-                    <span>{t('filterBar.filters.workTypes')}</span>
-                    <ChevronDownIcon
-                      className="ml-2 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
-                      aria-hidden="true"
-                    />
-                  </Popover.Button>
-
-                  <Transition
-                    as={Fragment}
-                    enter="transition ease-out duration-100"
-                    enterFrom="transform opacity-0 scale-95"
-                    enterTo="transform opacity-100 scale-100"
-                    leave="transition ease-in duration-75"
-                    leaveFrom="transform opacity-100 scale-100"
-                    leaveTo="transform opacity-0 scale-95"
+        <Menu.Items className="absolute z-10 mt-1 w-56 bg-white rounded-md shadow-lg">
+          <div className="py-1">
+            {industries?.map((industry) => (
+              <Menu.Item key={industry}>
+                {({ active }) => (
+                  <button
+                    onClick={() => handleIndustryChange(industry)}
+                    className={`${
+                      active ? 'bg-gray-100' : ''
+                    } block w-full text-left px-4 py-2 text-sm text-gray-700`}
                   >
-                    <Popover.Panel className="absolute right-0 z-10 mt-2 origin-top-right rounded-md bg-white p-4 shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none">
-                      <form className="space-y-4">
-                        {selectedFilters.industry.map((industryValue) => {
-                          const industry = filters[0].options.find(opt => opt.value === industryValue);
-                          return (
-                            <div key={industryValue} className="mb-4">
-                              {selectedFilters.industry.length > 1 && (
-                                <h4 className="text-sm font-medium text-gray-900 mb-2">
-                                  {t(industry.label)}
-                                </h4>
-                              )}
-                              <div className="space-y-2">
-                                {industry.workTypes.map((workType, idx) => (
-                                  <div key={idx} className="flex items-center">
-                                    <input
-                                      id={`filter-workType-${industryValue}-${idx}`}
-                                      name="workType[]"
-                                      value={workType.value}
-                                      type="checkbox"
-                                      checked={selectedFilters.workType.includes(workType.value)}
-                                      onChange={(e) => onFilterChange('workType', workType.value, e.target.checked)}
-                                      className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                                    />
-                                    <label
-                                      htmlFor={`filter-workType-${industryValue}-${idx}`}
-                                      className="ml-3 whitespace-nowrap pr-6 text-sm font-medium text-gray-900"
-                                    >
-                                      {t(workType.label)}
-                                    </label>
-                                  </div>
-                                ))}
-                              </div>
-                            </div>
-                          );
-                        })}
-                      </form>
-                    </Popover.Panel>
-                  </Transition>
-                </Popover>
-              )}
-              <AvailabilityFilter onChange={handleAvailabilityChange} />
-            </Popover.Group>
+                    {t(`freelancerSignUp.industries.${industry}`)}
+                  </button>
+                )}
+              </Menu.Item>
+            ))}
           </div>
-        </div>
-      </div>
+        </Menu.Items>
+      </Menu>
+
+      <Menu as="div" className="relative">
+        <Menu.Button className="flex items-center gap-2 px-3 py-2 text-sm rounded-md bg-white border border-gray-300 hover:bg-gray-50">
+          <span>Work Type</span>
+          <ChevronDownIcon className="h-5 w-5 text-gray-400" />
+        </Menu.Button>
+
+        <Menu.Items className="absolute z-10 mt-1 w-56 bg-white rounded-md shadow-lg">
+          <div className="py-1">
+            {Object.entries(workTypes || {}).map(([industry, types]) => (
+              <div key={industry}>
+                <div className="px-4 py-1 text-xs font-medium text-gray-500 bg-gray-50">
+                  {t(`freelancerSignUp.industries.${industry}`)}
+                </div>
+                {types.map((type) => (
+                  <Menu.Item key={`${industry}-${type}`}>
+                    {({ active }) => (
+                      <button
+                        onClick={() => handleWorkTypeChange(type)}
+                        className={`${
+                          active ? 'bg-gray-100' : ''
+                        } block w-full text-left px-4 py-2 text-sm text-gray-700`}
+                      >
+                        {t(`freelancerSignUp.workTypes.${industry}.${type}`)}
+                      </button>
+                    )}
+                  </Menu.Item>
+                ))}
+              </div>
+            ))}
+          </div>
+        </Menu.Items>
+      </Menu>
+
+      <AvailabilityFilter onChange={handleAvailabilityChange} />
     </div>
   );
 }
