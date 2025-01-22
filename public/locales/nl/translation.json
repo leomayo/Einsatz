@@ -102,7 +102,9 @@
         "visual_merchandising": "Visual Merchandising",
         "ecommerce": "E-commerce"
       }
-    }
+    },
+    "aboutMeLabel": "Over mij",
+    "aboutMePlaceholder": "Vertel iets over jezelf..."
   },
 
   "filterBar": {
@@ -130,7 +132,9 @@
   },
 
   "profileCard": {
-    "workPreferences": "Werkvoorkeuren",
+    "availableFor": "Beschikbaar voor",
+    "aboutMe": "Over mij",
+    "checkProfile": "Bekijk {{name}}",
     "specialty": "Specialisatie",
     "experience": "Ervaring"
   },

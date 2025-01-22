@@ -32,6 +32,7 @@ export default function FreelancerSignUp({ isOpen, onClose, onSignUp }) {
   const initialFormData = {
     name: '',
     email: '',
+    aboutMe: '',
     workPreferences: []
   };
   
@@ -53,8 +54,13 @@ export default function FreelancerSignUp({ isOpen, onClose, onSignUp }) {
     e.preventDefault();
     
     try {
-      await onSignUp(formData);
-      // Reset form
+      await onSignUp({
+        name: formData.name,
+        email: formData.email,
+        aboutMe: formData.aboutMe,
+        workPreferences: formData.workPreferences
+      });
+      
       setFormData(initialFormData);
       setSelectedIndustry('');
       setIsAddingNew(true);
@@ -342,6 +348,25 @@ export default function FreelancerSignUp({ isOpen, onClose, onSignUp }) {
                             {t('freelancerSignUp.workPreferencesForm.addAnother')}
                           </button>
                         )}
+                      </div>
+                    </div>
+
+                    <div className="mb-4">
+                      <label className="block text-sm font-medium text-gray-700">
+                        {t('freelancerSignUp.aboutMeLabel')}
+                      </label>
+                      
+                      <div className="mt-2">
+                        <textarea
+                          rows={3}
+                          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          value={formData.aboutMe}
+                          onChange={(e) => setFormData(prev => ({
+                            ...prev,
+                            aboutMe: e.target.value
+                          }))}
+                          placeholder={t('freelancerSignUp.aboutMePlaceholder')}
+                        />
                       </div>
                     </div>
                   </div>

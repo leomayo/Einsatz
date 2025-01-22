@@ -102,7 +102,9 @@
         "visual_merchandising": "Visual Merchandising",
         "ecommerce": "E-commerce"
       }
-    }
+    },
+    "aboutMeLabel": "About me",
+    "aboutMePlaceholder": "Tell something about yourself..."
   },
 
   "filterBar": {
@@ -128,7 +130,9 @@
   },
 
   "profileCard": {
-    "workPreferences": "Work Preferences",
+    "availableFor": "Available for",
+    "aboutMe": "About me",
+    "checkProfile": "Check {{name}}",
     "specialty": "Specialty",
     "experience": "Experience"
   },

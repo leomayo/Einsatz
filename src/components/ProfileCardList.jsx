@@ -15,9 +15,11 @@ const ProfileCardList = ({ data, isLoading }) => {
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {data.map((profile, index) => (
-        <ProfileCard key={index} profile={profile} />
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
+      {data.map((profile) => (
+        <div key={profile.id} className="h-full grid-cell-auto">
+          <ProfileCard profile={profile} />
+        </div>
       ))}
     </div>
   );

@@ -8,6 +8,54 @@ import FreelancerSignUp from './components/FreelancerSignUp';
 import useStore from './store/useStore';
 import { useTranslation } from 'react-i18next';
 
+// Define defaultProfiles before using it in useState
+const defaultProfiles = [
+  {
+    id: 1,
+    name: 'John Doe',
+    email: 'john@example.com',
+    avatar: '/path/to/avatar1.jpg',
+    aboutMe: {
+      en: "Full-stack developer with a passion for clean code and user-friendly interfaces. Always eager to learn new technologies and solve complex problems.",
+      nl: "Full-stack developer met een passie voor schone code en gebruiksvriendelijke interfaces. Altijd eager om nieuwe technologieën te leren en complexe problemen op te lossen."
+    },
+    workPreferences: [
+      {
+        industry: 'tech',
+        workType: 'software_dev',
+        specialtyNote: 'Full-stack development with React and Node.js'
+      },
+      {
+        industry: 'tech',
+        workType: 'cloud_engineering',
+        specialtyNote: 'AWS and Azure cloud solutions'
+      }
+    ]
+  },
+  {
+    id: 2,
+    name: 'Jane Doe',
+    email: 'jane@example.com',
+    avatar: '/path/to/avatar2.jpg',
+    aboutMe: {
+      en: "Data scientist specializing in machine learning and AI solutions. Experienced in both finance and healthcare sectors.",
+      nl: "Data scientist gespecialiseerd in machine learning en AI-oplossingen. Ervaren in zowel de financiële als zorgsector."
+    },
+    workPreferences: [
+      {
+        industry: 'finance',
+        workType: 'financial_analysis',
+        specialtyNote: 'Risk assessment and predictive modeling'
+      },
+      {
+        industry: 'tech',
+        workType: 'data_science',
+        specialtyNote: 'Machine learning and AI applications'
+      }
+    ]
+  }
+];
+
 function App() {
   const [isSignUpOpen, setIsSignUpOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -55,11 +103,12 @@ function App() {
 
   // Format the signup data to match the profile structure
   const handleSignUp = (formData) => {
-    // Map the workPreferences array properly
     const newProfile = {
+      id: Date.now(),
       name: formData.name || 'Anonymous',
       email: formData.email || '',
       avatar: null,
+      aboutMe: formData.aboutMe || '',  // Single string instead of translations
       workPreferences: formData.workPreferences.map(pref => ({
         industry: pref.industry,
         workType: pref.workType,
@@ -68,10 +117,13 @@ function App() {
       }))
     };
     
-    console.log('New profile:', newProfile); // For debugging
+    console.log('New profile being added:', newProfile);
     addProfile(newProfile);
     setIsSignUpOpen(false);
   };
+
+  // Add console.log here too
+  console.log('All profiles:', profiles);
 
   return (
     <div className="min-h-screen bg-gray-100">
