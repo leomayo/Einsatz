@@ -157,5 +157,26 @@
       "selectRange": "Selecteer periode",
       "selectDay": "Selecteer specifieke dag"
     }
+  },
+
+  "profilePage": {
+    "backToOverview": "Terug naar overzicht",
+    "workArea": "Werkgebied",
+    "availability": "Beschikbaarheid",
+    "portfolio": "Portfolio",
+    "workTypes": "Beschikbaar voor",
+    "aboutMe": "Over mij",
+    "editProfile": "Profiel bewerken",
+    "notFound": "Profiel niet gevonden",
+    "ratings": {
+      "jobs": "{{count}} opdrachten",
+      "hourlyRate": "€{{rate}}/uur",
+      "match": "Match"
+    },
+    "sections": {
+      "specific": "Specifiek",
+      "certifications": "Certificeringen",
+      "experience": "Ervaring"
+    }
   }
 }

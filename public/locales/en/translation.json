@@ -155,5 +155,26 @@
       "selectRange": "Select date range",
       "selectDay": "Select specific day"
     }
+  },
+
+  "profilePage": {
+    "backToOverview": "Back to overview",
+    "workArea": "Work Area",
+    "availability": "Availability",
+    "portfolio": "Portfolio",
+    "workTypes": "Available for",
+    "aboutMe": "About me",
+    "editProfile": "Edit Profile",
+    "notFound": "Profile not found",
+    "ratings": {
+      "jobs": "{{count}} jobs",
+      "hourlyRate": "€{{rate}}/hour",
+      "match": "Match"
+    },
+    "sections": {
+      "specific": "Specific",
+      "certifications": "Certifications",
+      "experience": "Experience"
+    }
   }
 }

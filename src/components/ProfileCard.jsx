@@ -2,12 +2,17 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import ProfileAvatar from './ProfileAvatar';
+import { useNavigate } from 'react-router-dom';
 
 const ProfileCard = ({ profile }) => {
   const { t, i18n } = useTranslation();
   const firstName = profile.name.split(' ')[0];
+  const MAX_VISIBLE_PREFERENCES = 3;
+  const navigate = useNavigate();
   
   const aboutMeText = profile.aboutMe || '';
+  const visiblePreferences = profile.workPreferences.slice(0, MAX_VISIBLE_PREFERENCES);
+  const remainingCount = Math.max(0, profile.workPreferences.length - MAX_VISIBLE_PREFERENCES);
 
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden h-full">
@@ -25,7 +30,7 @@ const ProfileCard = ({ profile }) => {
             {t('profileCard.availableFor')}:
           </h4>
           <div>
-            {profile.workPreferences.map((pref, index) => {
+            {visiblePreferences.map((pref, index) => {
               const workType = t(`freelancerSignUp.workTypes.${pref.industry}.${pref.workType}`);
               const specialtyText = pref.specialtyNote ? ` - ${pref.specialtyNote}` : '';
               return (
@@ -37,6 +42,11 @@ const ProfileCard = ({ profile }) => {
                 </div>
               );
             })}
+            {remainingCount > 0 && (
+              <div className="text-sm text-gray-500 italic">
+                {t('profileCard.moreAvailable', { count: remainingCount })}
+              </div>
+            )}
           </div>
         </div>
 
@@ -53,7 +63,7 @@ const ProfileCard = ({ profile }) => {
         <div className="mt-auto">
           <div className="flex justify-end">
             <button
-              onClick={() => {/* TODO: Add navigation to profile page */}}
+              onClick={() => navigate(`/profile/${profile.id}`)}
               className="inline-flex items-center px-3 py-1.5 text-xs font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-md"
             >
               {t('profileCard.checkProfile', { name: firstName })}

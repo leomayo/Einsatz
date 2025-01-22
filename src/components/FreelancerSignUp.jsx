@@ -23,6 +23,31 @@ const nlTranslations = {
       chooseWorkType: "Kies een type werk...",
       specialtyNote: "Specialisatie",
       experienceNote: "Ervaring"
+    },
+    industries: {
+      tech: "Technologie",
+      finance: "Financiën",
+      healthcare: "Gezondheidszorg",
+      education: "Onderwijs"
+    },
+    workTypes: {
+      tech: {
+        software_dev: "Software Ontwikkeling",
+        data_science: "Data Science",
+        cloud_engineering: "Cloud Engineering"
+      },
+      finance: {
+        financial_analysis: "Financiële Analyse",
+        investment_banking: "Investment Banking"
+      },
+      healthcare: {
+        medical_research: "Medisch Onderzoek",
+        healthcare_admin: "Zorgadministratie"
+      },
+      education: {
+        teaching: "Lesgeven",
+        curriculum_development: "Curriculumontwikkeling"
+      }
     }
   },
   filterBar: {
@@ -32,6 +57,31 @@ const nlTranslations = {
       industries: "Branches",
       workTypes: "Type Werk"
     }
+  },
+  profileCard: {
+    availableFor: "Beschikbaar voor",
+    checkProfile: "Bekijk {{name}}'s profiel",
+    moreAvailable: "...plus {{count}} extra"
+  },
+  profilePage: {
+    backToOverview: "Terug naar overzicht",
+    workArea: "Werkgebied",
+    availability: "Beschikbaarheid",
+    portfolio: "Portfolio",
+    workTypes: "Beschikbaar voor",
+    aboutMe: "Over mij",
+    editProfile: "Profiel bewerken",
+    ratings: {
+      jobs: "{{count}} opdrachten",
+      hourlyRate: "€{{rate}}/uur",
+      match: "Match"
+    },
+    sections: {
+      specific: "Specifiek",
+      certifications: "Certificeringen",
+      experience: "Ervaring"
+    },
+    notFound: "Profiel niet gevonden"
   }
 };
 
@@ -54,6 +104,31 @@ const enTranslations = {
       chooseWorkType: "Choose a work type...",
       specialtyNote: "Specialization",
       experienceNote: "Experience"
+    },
+    industries: {
+      tech: "Technology",
+      finance: "Finance",
+      healthcare: "Healthcare",
+      education: "Education"
+    },
+    workTypes: {
+      tech: {
+        software_dev: "Software Development",
+        data_science: "Data Science",
+        cloud_engineering: "Cloud Engineering"
+      },
+      finance: {
+        financial_analysis: "Financial Analysis",
+        investment_banking: "Investment Banking"
+      },
+      healthcare: {
+        medical_research: "Medical Research",
+        healthcare_admin: "Healthcare Administration"
+      },
+      education: {
+        teaching: "Teaching",
+        curriculum_development: "Curriculum Development"
+      }
     }
   },
   filterBar: {
@@ -63,6 +138,31 @@ const enTranslations = {
       industries: "Industries",
       workTypes: "Work Types"
     }
+  },
+  profileCard: {
+    availableFor: "Available for",
+    checkProfile: "Check {{name}}'s profile",
+    moreAvailable: "...plus {{count}} extra"
+  },
+  profilePage: {
+    backToOverview: "Back to overview",
+    workArea: "Work Area",
+    availability: "Availability",
+    portfolio: "Portfolio",
+    workTypes: "Available for",
+    aboutMe: "About me",
+    editProfile: "Edit Profile",
+    ratings: {
+      jobs: "{{count}} jobs",
+      hourlyRate: "€{{rate}}/hour",
+      match: "Match"
+    },
+    sections: {
+      specific: "Specific",
+      certifications: "Certifications",
+      experience: "Experience"
+    },
+    notFound: "Profile not found"
   }
 };
 

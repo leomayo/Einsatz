@@ -7,6 +7,8 @@ import ProfileCardList from './components/ProfileCardList';
 import FreelancerSignUp from './components/FreelancerSignUp';
 import useStore from './store/useStore';
 import { useTranslation } from 'react-i18next';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import ProfilePage from './components/pages/ProfilePage';
 
 // Define defaultProfiles before using it in useState
 const defaultProfiles = [
@@ -23,12 +25,16 @@ const defaultProfiles = [
       {
         industry: 'tech',
         workType: 'software_dev',
-        specialtyNote: 'Full-stack development with React and Node.js'
+        specialtyNote: 'Full-stack development with React and Node.js',
+        certifications: 'AWS Certified Developer, MongoDB Certified Developer',
+        experienceNote: '8+ years in web development, led 5 major projects'
       },
       {
         industry: 'tech',
         workType: 'cloud_engineering',
-        specialtyNote: 'AWS and Azure cloud solutions'
+        specialtyNote: 'AWS and Azure cloud solutions',
+        certifications: 'AWS Solutions Architect, Azure Cloud Architect',
+        experienceNote: '5 years of cloud infrastructure management'
       }
     ]
   },
@@ -45,12 +51,16 @@ const defaultProfiles = [
       {
         industry: 'finance',
         workType: 'financial_analysis',
-        specialtyNote: 'Risk assessment and predictive modeling'
+        specialtyNote: 'Risk assessment and predictive modeling',
+        certifications: 'CFA Level III, Financial Risk Manager (FRM)',
+        experienceNote: '6 years in quantitative analysis and risk modeling'
       },
       {
         industry: 'tech',
         workType: 'data_science',
-        specialtyNote: 'Machine learning and AI applications'
+        specialtyNote: 'Machine learning and AI applications',
+        certifications: 'Google Certified Professional Data Engineer, Deep Learning Specialization',
+        experienceNote: '4 years of implementing ML solutions in production'
       }
     ]
   }
@@ -125,29 +135,73 @@ function App() {
   // Add console.log here too
   console.log('All profiles:', profiles);
 
+  // Add this helper function
+  const addTestProfile = () => {
+    const industries = ['tech', 'finance', 'healthcare', 'education'];
+    const workTypes = {
+      tech: ['software_dev', 'data_science', 'cloud_engineering'],
+      finance: ['financial_analysis', 'investment_banking'],
+      healthcare: ['medical_research', 'healthcare_admin'],
+      education: ['teaching', 'curriculum_development']
+    };
+
+    const randomProfile = {
+      id: Date.now(),
+      name: `Test User ${Math.floor(Math.random() * 1000)}`,
+      email: `test${Math.floor(Math.random() * 1000)}@example.com`,
+      avatar: null,
+      aboutMe: "This is a test profile with randomly generated work preferences.",
+      workPreferences: Array.from({ length: Math.floor(Math.random() * 5) + 2 }, () => {
+        const industry = industries[Math.floor(Math.random() * industries.length)];
+        return {
+          industry,
+          workType: workTypes[industry][Math.floor(Math.random() * workTypes[industry].length)],
+          specialtyNote: `Test specialty ${Math.floor(Math.random() * 100)}`,
+          certifications: `Test certification ${Math.floor(Math.random() * 100)}`,
+          experienceNote: `${Math.floor(Math.random() * 10) + 1} years of experience in this field`
+        };
+      })
+    };
+
+    addProfile(randomProfile);
+  };
+
   return (
-    <div className="min-h-screen bg-gray-100">
-      <Header onSignUpClick={() => setIsSignUpOpen(true)} />
-      <Hero />
-      <main className="container mx-auto py-10 px-4">
-        <div className="mb-8">
-          <FilterBar 
-            profiles={profiles} 
-            onFilterChange={handleFilterChange} 
-          />
-        </div>
-        
-        <ProfileCardList 
-          data={filteredProfiles} 
-          isLoading={isLoading}
-        />
-      </main>
-      <FreelancerSignUp
-        isOpen={isSignUpOpen}
-        onClose={() => setIsSignUpOpen(false)}
-        onSignUp={handleSignUp}
-      />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={
+          <div className="min-h-screen bg-gray-100">
+            <Header onSignUpClick={() => setIsSignUpOpen(true)} />
+            <Hero />
+            <main className="container mx-auto py-10 px-4">
+              <div className="mb-8">
+                <FilterBar 
+                  profiles={profiles} 
+                  onFilterChange={handleFilterChange} 
+                />
+              </div>
+              
+              <ProfileCardList 
+                data={filteredProfiles} 
+                isLoading={isLoading}
+              />
+            </main>
+            <FreelancerSignUp
+              isOpen={isSignUpOpen}
+              onClose={() => setIsSignUpOpen(false)}
+              onSignUp={handleSignUp}
+            />
+            <button
+              onClick={addTestProfile}
+              className="fixed bottom-4 right-4 bg-indigo-600 text-white px-4 py-2 rounded-md"
+            >
+              Add Test Profile
+            </button>
+          </div>
+        } />
+        <Route path="/profile/:id" element={<ProfilePage />} />
+      </Routes>
+    </Router>
   );
 }
 
