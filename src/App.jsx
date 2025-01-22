@@ -9,6 +9,8 @@ import useStore from './store/useStore';
 import { useTranslation } from 'react-i18next';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ProfilePage from './components/pages/ProfilePage';
+import AdminDashboard from './components/pages/AdminDashboard';
+import AdminPanel from './components/AdminPanel';
 
 // Define defaultProfiles before using it in useState
 const defaultProfiles = [
@@ -140,9 +142,9 @@ function App() {
     const industries = ['tech', 'finance', 'healthcare', 'education'];
     const workTypes = {
       tech: ['software_dev', 'data_science', 'cloud_engineering'],
-      finance: ['financial_analysis', 'investment_banking'],
-      healthcare: ['medical_research', 'healthcare_admin'],
-      education: ['teaching', 'curriculum_development']
+      finance: ['financial_analysis', 'investment_banking', 'risk_management'],
+      healthcare: ['medical_research', 'healthcare_it', 'clinical_practice'],
+      education: ['teaching', 'curriculum_development', 'educational_technology']
     };
 
     const randomProfile = {
@@ -200,6 +202,7 @@ function App() {
           </div>
         } />
         <Route path="/profile/:id" element={<ProfilePage />} />
+        <Route path="/admin" element={<AdminPanel />} />
       </Routes>
     </Router>
   );

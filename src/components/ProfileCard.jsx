@@ -6,6 +6,11 @@ import { useNavigate } from 'react-router-dom';
 
 const ProfileCard = ({ profile }) => {
   const { t, i18n } = useTranslation();
+  
+  // Add this debug log
+  console.log('Available translations:', i18n.store.data);
+  console.log('Current language:', i18n.language);
+  
   const firstName = profile.name.split(' ')[0];
   const MAX_VISIBLE_PREFERENCES = 3;
   const navigate = useNavigate();

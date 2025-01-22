@@ -3,7 +3,10 @@
   "company_name": "Einsatz",
   "product": "Product",
   "features": "Features",
-  "marketplace": "Marketplace",
+  "marketplace": {
+    "title": "Find Your Perfect Freelancer",
+    "subtitle": "Ready - Set - Go"
+  },
   "company": "Company",
   "log_in": "Log in",
   "sign_up": "Sign up",
@@ -37,7 +40,15 @@
   "most_popular": "Most Popular",
   "best_rating": "Best Rating",
   "newest": "Newest",
-  "filters": "Filters",
+  "filters": {
+    "availability": {
+      "label": "Availability",
+      "placeholder": "Select dates",
+      "nextWeek": "Any time in next 7 days",
+      "selectRange": "Select date range",
+      "selectDay": "Select specific day"
+    }
+  },
   "close_menu": "Close menu",
   "footer": "© 2024 My Website. All rights reserved.",
   "title": "Freelancer Sign Up",
@@ -47,7 +58,6 @@
   "bio": "Short Bio",
   "portfolio": "Portfolio Link",
   "submit": "Sign Up",
-
   "freelancerSignUp": {
     "title": "Sign Up as Freelancer",
     "name": "Name",
@@ -72,7 +82,8 @@
       "finance": "Finance",
       "healthcare": "Healthcare",
       "education": "Education",
-      "retail": "Retail"
+      "retail": "Retail",
+      "construction": "Construction"
     },
     "workTypes": {
       "tech": {
@@ -101,14 +112,18 @@
         "inventory_management": "Inventory Management",
         "visual_merchandising": "Visual Merchandising",
         "ecommerce": "E-commerce"
+      },
+      "construction": {
+        "mason": "Mason"
       }
     },
     "aboutMeLabel": "About me",
     "aboutMePlaceholder": "Tell something about yourself..."
   },
-
   "filterBar": {
     "title": "Available Freelancers",
+    "industry": "Industry",
+    "workType": "Work Type",
     "filters": {
       "title": "Filters",
       "close": "Close filters",
@@ -116,47 +131,29 @@
       "workTypes": "Work Types"
     }
   },
-
-  "marketplace": {
-    "title": "Find Your Perfect Freelancer",
-    "subtitle": "Ready - Set - Go"
-  },
-
   "nav": {
     "marketplace": "Marketplace",
+    "admin": "Admin Panel",
     "about": "About",
     "contact": "Contact",
     "signup": "Sign Up"
   },
-
   "profileCard": {
     "availableFor": "Available for",
     "aboutMe": "About me",
     "checkProfile": "Check {{name}}",
+    "moreAvailable": "...plus {{count}} more",
     "specialty": "Specialty",
     "experience": "Experience"
   },
-
   "hero": {
     "title": "Find the Perfect Freelancer",
     "subtitle": "Connect with skilled professionals ready to help your business grow"
   },
-
   "app": {
     "title": "Freelancer Platform",
     "description": "Find the best freelance opportunities"
   },
-
-  "filters": {
-    "availability": {
-      "label": "Availability",
-      "placeholder": "Select dates",
-      "nextWeek": "Any time in next 7 days",
-      "selectRange": "Select date range",
-      "selectDay": "Select specific day"
-    }
-  },
-
   "profilePage": {
     "backToOverview": "Back to overview",
     "workArea": "Work Area",

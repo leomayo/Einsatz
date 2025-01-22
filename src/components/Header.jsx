@@ -10,7 +10,8 @@ import LanguageSwitcher from './LanguageSwitcher';
 import logo from '../assets/einsatz-logo.png';
 
 const navigation = [
-  { name: 'nav.marketplace', href: '#' },
+  { name: 'nav.marketplace', href: '/' },
+  { name: 'nav.admin', href: '/admin' },
   { name: 'nav.about', href: '#' },
   { name: 'nav.contact', href: '#' }
 ]

@@ -1,194 +1,200 @@
 // src/components/FreelancerSignUp.jsx
-import React, { Fragment, useState, useEffect } from 'react'
+import React, { Fragment, useState, useEffect, useMemo } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { useTranslation } from 'react-i18next';
 import { ChevronDownIcon } from '@heroicons/react/16/solid'
-
-const nlTranslations = {
-  freelancerSignUp: {
-    title: "Aanmelden als Freelancer",
-    name: "Naam",
-    email: "E-mail",
-    submit: "Aanmelden",
-    cancel: "Annuleren",
-    workPreferencesForm: {
-      title: "Werkvoorkeuren",
-      description: "Voeg je werkvoorkeuren toe om de beste matches te vinden",
-      addNew: "Nieuwe Werkvoorkeur",
-      addAnother: "Nog een Werkvoorkeur Toevoegen",
-      remove: "Verwijderen",
-      selectIndustry: "Selecteer Branche",
-      selectWorkType: "Selecteer Type Werk",
-      chooseIndustry: "Kies een branche...",
-      chooseWorkType: "Kies een type werk...",
-      specialtyNote: "Specialisatie",
-      experienceNote: "Ervaring"
-    },
-    industries: {
-      tech: "Technologie",
-      finance: "Financiën",
-      healthcare: "Gezondheidszorg",
-      education: "Onderwijs"
-    },
-    workTypes: {
-      tech: {
-        software_dev: "Software Ontwikkeling",
-        data_science: "Data Science",
-        cloud_engineering: "Cloud Engineering"
-      },
-      finance: {
-        financial_analysis: "Financiële Analyse",
-        investment_banking: "Investment Banking"
-      },
-      healthcare: {
-        medical_research: "Medisch Onderzoek",
-        healthcare_admin: "Zorgadministratie"
-      },
-      education: {
-        teaching: "Lesgeven",
-        curriculum_development: "Curriculumontwikkeling"
-      }
-    }
-  },
-  filterBar: {
-    industry: "Branche",
-    workType: "Type Werk",
-    filters: {
-      industries: "Branches",
-      workTypes: "Type Werk"
-    }
-  },
-  profileCard: {
-    availableFor: "Beschikbaar voor",
-    checkProfile: "Bekijk {{name}}'s profiel",
-    moreAvailable: "...plus {{count}} extra"
-  },
-  profilePage: {
-    backToOverview: "Terug naar overzicht",
-    workArea: "Werkgebied",
-    availability: "Beschikbaarheid",
-    portfolio: "Portfolio",
-    workTypes: "Beschikbaar voor",
-    aboutMe: "Over mij",
-    editProfile: "Profiel bewerken",
-    ratings: {
-      jobs: "{{count}} opdrachten",
-      hourlyRate: "€{{rate}}/uur",
-      match: "Match"
-    },
-    sections: {
-      specific: "Specifiek",
-      certifications: "Certificeringen",
-      experience: "Ervaring"
-    },
-    notFound: "Profiel niet gevonden"
-  }
-};
-
-const enTranslations = {
-  freelancerSignUp: {
-    title: "Sign Up as Freelancer",
-    name: "Name",
-    email: "Email",
-    submit: "Submit",
-    cancel: "Cancel",
-    workPreferencesForm: {
-      title: "Work Preferences",
-      description: "Add your work preferences to find the best matches",
-      addNew: "New Work Preference",
-      addAnother: "Add Another Work Preference",
-      remove: "Remove",
-      selectIndustry: "Select Industry",
-      selectWorkType: "Select Work Type",
-      chooseIndustry: "Choose an industry...",
-      chooseWorkType: "Choose a work type...",
-      specialtyNote: "Specialization",
-      experienceNote: "Experience"
-    },
-    industries: {
-      tech: "Technology",
-      finance: "Finance",
-      healthcare: "Healthcare",
-      education: "Education"
-    },
-    workTypes: {
-      tech: {
-        software_dev: "Software Development",
-        data_science: "Data Science",
-        cloud_engineering: "Cloud Engineering"
-      },
-      finance: {
-        financial_analysis: "Financial Analysis",
-        investment_banking: "Investment Banking"
-      },
-      healthcare: {
-        medical_research: "Medical Research",
-        healthcare_admin: "Healthcare Administration"
-      },
-      education: {
-        teaching: "Teaching",
-        curriculum_development: "Curriculum Development"
-      }
-    }
-  },
-  filterBar: {
-    industry: "Industry",
-    workType: "Work Type",
-    filters: {
-      industries: "Industries",
-      workTypes: "Work Types"
-    }
-  },
-  profileCard: {
-    availableFor: "Available for",
-    checkProfile: "Check {{name}}'s profile",
-    moreAvailable: "...plus {{count}} extra"
-  },
-  profilePage: {
-    backToOverview: "Back to overview",
-    workArea: "Work Area",
-    availability: "Availability",
-    portfolio: "Portfolio",
-    workTypes: "Available for",
-    aboutMe: "About me",
-    editProfile: "Edit Profile",
-    ratings: {
-      jobs: "{{count}} jobs",
-      hourlyRate: "€{{rate}}/hour",
-      match: "Match"
-    },
-    sections: {
-      specific: "Specific",
-      certifications: "Certifications",
-      experience: "Experience"
-    },
-    notFound: "Profile not found"
-  }
-};
+import { XMarkIcon } from '@heroicons/react/24/outline';
 
 export default function FreelancerSignUp({ isOpen, onClose, onSignUp }) {
   const { t, i18n } = useTranslation('translation', { useSuspense: false });
-  const initialFormData = {
+  const [formData, setFormData] = useState({
     name: '',
     email: '',
     aboutMe: '',
     workPreferences: []
-  };
-  
-  const [formData, setFormData] = useState(initialFormData);
+  });
   const [selectedIndustry, setSelectedIndustry] = useState('');
   const [isAddingNew, setIsAddingNew] = useState(true);
+  const [workType, setWorkType] = useState('');
   
-  useEffect(() => {
-    // Add both English and Dutch translations
-    i18n.addResourceBundle('en', 'translation', enTranslations, true, true);
-    i18n.addResourceBundle('nl', 'translation', nlTranslations, true, true);
-    i18n.changeLanguage('nl'); // or 'en' depending on your default
-  }, []);
+  console.log('Available translations:', i18n.store.data);
 
-  console.log('Current translations:', i18n.store.data);
-  console.log('Current language:', i18n.language);
-  console.log('Title should be:', i18n.store.data?.nl?.translation?.freelancerSignUp?.title);
+  useEffect(() => {
+    // Add both English and Dutch translations only once when component mounts
+    const loadTranslations = async () => {
+      try {
+        if (!i18n.hasResourceBundle('en', 'translation')) {
+          i18n.addResourceBundle('en', 'translation', {
+            freelancerSignUp: {
+              title: "Sign Up as Freelancer",
+              name: "Name",
+              email: "Email",
+              submit: "Submit",
+              cancel: "Cancel",
+              workPreferencesForm: {
+                title: "Work Preferences",
+                description: "Add your work preferences to find the best matches",
+                addNew: "New Work Preference",
+                addAnother: "Add Another Work Preference",
+                remove: "Remove",
+                selectIndustry: "Select Industry",
+                selectWorkType: "Select Work Type",
+                chooseIndustry: "Choose an industry...",
+                chooseWorkType: "Choose a work type...",
+                specialtyLabel: "Specialization",
+                experienceLabel: "Experience"
+              },
+              industries: {
+                tech: "Technology",
+                finance: "Finance",
+                healthcare: "Healthcare",
+                education: "Education"
+              },
+              workTypes: {
+                tech: {
+                  software_dev: "Software Development",
+                  data_science: "Data Science",
+                  cloud_engineering: "Cloud Engineering"
+                },
+                finance: {
+                  financial_analysis: "Financial Analysis",
+                  investment_banking: "Investment Banking"
+                },
+                healthcare: {
+                  medical_research: "Medical Research",
+                  healthcare_admin: "Healthcare Administration"
+                },
+                education: {
+                  teaching: "Teaching",
+                  curriculum_development: "Curriculum Development"
+                }
+              }
+            },
+            filterBar: {
+              industry: "Industry",
+              workType: "Work Type",
+              filters: {
+                industries: "Industries",
+                workTypes: "Work Types"
+              }
+            },
+            profileCard: {
+              availableFor: "Available for",
+              checkProfile: "Check {{name}}'s profile",
+              moreAvailable: "...plus {{count}} extra"
+            },
+            profilePage: {
+              backToOverview: "Back to overview",
+              workArea: "Work Area",
+              availability: "Availability",
+              portfolio: "Portfolio",
+              workTypes: "Available for",
+              aboutMe: "About me",
+              editProfile: "Edit Profile",
+              ratings: {
+                jobs: "{{count}} jobs",
+                hourlyRate: "€{{rate}}/hour",
+                match: "Match"
+              },
+              sections: {
+                specific: "Specific",
+                certifications: "Certifications",
+                experience: "Experience"
+              },
+              notFound: "Profile not found"
+            }
+          }, true, true);
+        }
+        
+        if (!i18n.hasResourceBundle('nl', 'translation')) {
+          i18n.addResourceBundle('nl', 'translation', {
+            freelancerSignUp: {
+              title: "Aanmelden als Freelancer",
+              name: "Naam",
+              email: "E-mail",
+              submit: "Aanmelden",
+              cancel: "Annuleren",
+              workPreferencesForm: {
+                title: "Werkvoorkeuren",
+                description: "Voeg je werkvoorkeuren toe om de beste matches te vinden",
+                addNew: "Nieuwe Werkvoorkeur",
+                addAnother: "Nog een Werkvoorkeur Toevoegen",
+                remove: "Verwijderen",
+                selectIndustry: "Selecteer Branche",
+                selectWorkType: "Selecteer Type Werk",
+                chooseIndustry: "Kies een branche...",
+                chooseWorkType: "Kies een type werk...",
+                specialtyLabel: "Specialisatie",
+                experienceLabel: "Ervaring"
+              },
+              industries: {
+                tech: "Technologie",
+                finance: "Financiën",
+                healthcare: "Gezondheidszorg",
+                education: "Onderwijs"
+              },
+              workTypes: {
+                tech: {
+                  software_dev: "Software Ontwikkeling",
+                  data_science: "Data Science",
+                  cloud_engineering: "Cloud Engineering"
+                },
+                finance: {
+                  financial_analysis: "Financiële Analyse",
+                  investment_banking: "Investment Banking"
+                },
+                healthcare: {
+                  medical_research: "Medisch Onderzoek",
+                  healthcare_admin: "Zorgadministratie"
+                },
+                education: {
+                  teaching: "Lesgeven",
+                  curriculum_development: "Curriculumontwikkeling"
+                }
+              }
+            },
+            filterBar: {
+              industry: "Branche",
+              workType: "Type Werk",
+              filters: {
+                industries: "Branches",
+                workTypes: "Type Werk"
+              }
+            },
+            profileCard: {
+              availableFor: "Beschikbaar voor",
+              checkProfile: "Bekijk {{name}}'s profiel",
+              moreAvailable: "...plus {{count}} extra"
+            },
+            profilePage: {
+              backToOverview: "Terug naar overzicht",
+              workArea: "Werkgebied",
+              availability: "Beschikbaarheid",
+              portfolio: "Portfolio",
+              workTypes: "Beschikbaar voor",
+              aboutMe: "Over mij",
+              editProfile: "Profiel bewerken",
+              ratings: {
+                jobs: "{{count}} opdrachten",
+                hourlyRate: "€{{rate}}/uur",
+                match: "Match"
+              },
+              sections: {
+                specific: "Specifiek",
+                certifications: "Certificeringen",
+                experience: "Ervaring"
+              },
+              notFound: "Profiel niet gevonden"
+            }
+          }, true, true);
+        }
+      } catch (error) {
+        console.error('Error loading translations:', error);
+      }
+    };
+    
+    loadTranslations();
+  }, []); // Empty dependency array - only run once on mount
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -201,7 +207,12 @@ export default function FreelancerSignUp({ isOpen, onClose, onSignUp }) {
         workPreferences: formData.workPreferences
       });
       
-      setFormData(initialFormData);
+      setFormData({
+        name: '',
+        email: '',
+        aboutMe: '',
+        workPreferences: []
+      });
       setSelectedIndustry('');
       setIsAddingNew(true);
       onClose();
@@ -213,7 +224,12 @@ export default function FreelancerSignUp({ isOpen, onClose, onSignUp }) {
   // Reset form when dialog is opened
   useEffect(() => {
     if (isOpen) {
-      setFormData(initialFormData);
+      setFormData({
+        name: '',
+        email: '',
+        aboutMe: '',
+        workPreferences: []
+      });
       setSelectedIndustry('');
       setIsAddingNew(true);
     }
@@ -249,23 +265,20 @@ export default function FreelancerSignUp({ isOpen, onClose, onSignUp }) {
     setSelectedIndustry('');
   };
 
-  // Get work types for selected industry
-  const getWorkTypesForIndustry = (industry) => {
-    switch(industry) {
-      case 'tech':
-        return ['software_dev', 'data_science', 'cloud_engineering'];
-      case 'finance':
-        return ['financial_analysis', 'investment_banking', 'risk_management'];
-      case 'healthcare':
-        return ['medical_research', 'healthcare_it', 'clinical_practice'];
-      case 'education':
-        return ['teaching', 'curriculum_development', 'educational_technology', 'student_counseling'];
-      case 'retail':
-        return ['sales', 'inventory_management', 'visual_merchandising', 'ecommerce'];
-      default:
-        return [];
+  // Memoize the workTypes calculation
+  const workTypes = useMemo(() => {
+    if (!selectedIndustry) return {};
+    try {
+      return t(`freelancerSignUp.workTypes.${selectedIndustry}`, { returnObjects: true }) || {};
+    } catch (error) {
+      console.error('Error getting work types:', error);
+      return {};
     }
-  };
+  }, [selectedIndustry, t]);
+
+  useEffect(() => {
+    setWorkType(''); // Reset work type when industry changes
+  }, [selectedIndustry]);
 
   return (
     <Transition.Root show={isOpen} as={Fragment}>
@@ -366,7 +379,7 @@ export default function FreelancerSignUp({ isOpen, onClose, onSignUp }) {
                               </div>
                               <div className="sm:col-span-2">
                                 <label className="block text-sm/6 font-medium text-gray-900">
-                                  {t('freelancerSignUp.workPreferencesForm.specialtyNote')}
+                                  {t('freelancerSignUp.specialtyLabel')}
                                 </label>
                                 <div className="mt-2">
                                   <input
@@ -383,7 +396,7 @@ export default function FreelancerSignUp({ isOpen, onClose, onSignUp }) {
                               </div>
                               <div className="sm:col-span-2">
                                 <label className="block text-sm/6 font-medium text-gray-900">
-                                  {t('freelancerSignUp.workPreferencesForm.experienceNote')}
+                                  {t('freelancerSignUp.experienceLabel')}
                                 </label>
                                 <div className="mt-2">
                                   <input
@@ -434,7 +447,7 @@ export default function FreelancerSignUp({ isOpen, onClose, onSignUp }) {
                                     className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pl-3 pr-8 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                                   >
                                     <option value="">{t('freelancerSignUp.workPreferencesForm.chooseIndustry')}</option>
-                                    {['tech', 'finance', 'healthcare', 'education', 'retail'].map(industry => (
+                                    {Object.keys(t('freelancerSignUp.industries', { returnObjects: true })).map(industry => (
                                       <option key={industry} value={industry}>
                                         {t(`freelancerSignUp.industries.${industry}`)}
                                       </option>
@@ -454,19 +467,23 @@ export default function FreelancerSignUp({ isOpen, onClose, onSignUp }) {
                                   </label>
                                   <div className="mt-2 grid grid-cols-1">
                                     <select
+                                      value={workType}
                                       onChange={(e) => {
-                                        if (e.target.value) {
-                                          handleWorkPreferenceChange(selectedIndustry, e.target.value);
+                                        try {
+                                          if (e.target.value) {
+                                            handleWorkPreferenceChange(selectedIndustry, e.target.value);
+                                            setWorkType('');
+                                          }
+                                        } catch (error) {
+                                          console.error('Error handling work type change:', error);
                                         }
-                                        e.target.value = '';
                                       }}
                                       className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pl-3 pr-8 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-                                      defaultValue=""
                                     >
                                       <option value="">{t('freelancerSignUp.workPreferencesForm.chooseWorkType')}</option>
-                                      {getWorkTypesForIndustry(selectedIndustry).map(workType => (
-                                        <option key={workType} value={workType}>
-                                          {t(`freelancerSignUp.workTypes.${selectedIndustry}.${workType}`)}
+                                      {Object.entries(workTypes).map(([key, name]) => (
+                                        <option key={key} value={key}>
+                                          {name}
                                         </option>
                                       ))}
                                     </select>

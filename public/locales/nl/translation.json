@@ -1,53 +1,63 @@
 {
-    "welcome": "Welkom",
-    "company_name": "Einsatz",
-    "product": "Product",
-    "features": "Functies",
-    "marketplace": "Marktplaats",
-    "company": "Bedrijf",
-    "log_in": "Log in",
-    "sign_up": "Aanmelden",
-    "paragraph": "Deze zzp'ers staan klaar om je bedrijf te helpen. Wie heb je nodig?",
-    "product_filters": "Productfilters",
-    "sort": "Sorteren",
-    "category": "Categorie",
-    "brand": "Merk",
-    "color": "Kleur",
-    "sizes": "Maten",
-    "profile_name": "Bram Hollander",
-    "handle": "@bram_hollander",
-    "call": "Bel",
-    "skills_experience": "Vaardigheden & Ervaring",
-    "personal_traits": "Persoonlijke Eigenschappen",
-    "certifications": "Certificeringen",
-    "job_interests": "Job Interesses",
-    "tees": "Tees",
-    "crewnecks": "Crewnecks",
-    "hats": "Hoeden",
-    "clothing_company": "Kledingbedrijf",
-    "fashion_inc": "Fashion Inc.",
-    "shoes_n_more": "Shoes 'n More",
-    "white": "Wit",
-    "black": "Zwart",
-    "grey": "Grijs",
-    "s": "S",
-    "m": "M",
-    "l": "L",
-    "most_popular": "Meest Populair",
-    "best_rating": "Beste Beoordeling",
-    "newest": "Nieuwste",
-    "filters": "Filters",
-    "close_menu": "Menu sluiten",
-    "footer": "© 2024 Mijn Website. Alle rechten voorbehouden.",
-    "title": "Aanmelden Freelancer",
-    "name": "Naam",
-    "email": "Email",
-    "location": "Locatie",
-    "skills": "Vaardigheden",
-    "bio": "Jij in het kort",
-    "portfolio": "Portfolio Link",
-    "submit": "Aanmelden",
-   
+  "welcome": "Welkom",
+  "company_name": "Einsatz",
+  "product": "Product",
+  "features": "Functies",
+  "marketplace": {
+    "title": "Vind Je Perfecte Freelancer",
+    "subtitle": "Klaar - Af - Gaan"
+  },
+  "company": "Bedrijf",
+  "log_in": "Log in",
+  "sign_up": "Aanmelden",
+  "paragraph": "Deze zzp'ers staan klaar om je bedrijf te helpen. Wie heb je nodig?",
+  "product_filters": "Productfilters",
+  "sort": "Sorteren",
+  "category": "Categorie",
+  "brand": "Merk",
+  "color": "Kleur",
+  "sizes": "Maten",
+  "profile_name": "Bram Hollander",
+  "handle": "@bram_hollander",
+  "call": "Bel",
+  "skills_experience": "Vaardigheden & Ervaring",
+  "personal_traits": "Persoonlijke Eigenschappen",
+  "certifications": "Certificeringen",
+  "job_interests": "Job Interesses",
+  "tees": "Tees",
+  "crewnecks": "Crewnecks",
+  "hats": "Hoeden",
+  "clothing_company": "Kledingbedrijf",
+  "fashion_inc": "Fashion Inc.",
+  "shoes_n_more": "Shoes 'n More",
+  "white": "Wit",
+  "black": "Zwart",
+  "grey": "Grijs",
+  "s": "S",
+  "m": "M",
+  "l": "L",
+  "most_popular": "Meest Populair",
+  "best_rating": "Beste Beoordeling",
+  "newest": "Nieuwste",
+  "filters": {
+    "availability": {
+      "label": "Beschikbaarheid",
+      "placeholder": "Selecteer data",
+      "nextWeek": "Binnen 7 dagen",
+      "selectRange": "Selecteer periode",
+      "selectDay": "Selecteer specifieke dag"
+    }
+  },
+  "close_menu": "Menu sluiten",
+  "footer": "© 2024 Mijn Website. Alle rechten voorbehouden.",
+  "title": "Aanmelden Freelancer",
+  "name": "Naam",
+  "email": "Email",
+  "location": "Locatie",
+  "skills": "Vaardigheden",
+  "bio": "Jij in het kort",
+  "portfolio": "Portfolio Link",
+  "submit": "Aanmelden",
   "freelancerSignUp": {
     "title": "Aanmelden als Freelancer",
     "name": "Naam",
@@ -72,7 +82,8 @@
       "finance": "Financiën",
       "healthcare": "Gezondheidszorg",
       "education": "Onderwijs",
-      "retail": "Detailhandel"
+      "retail": "Detailhandel",
+      "construction": "Bouw"
     },
     "workTypes": {
       "tech": {
@@ -101,12 +112,14 @@
         "inventory_management": "Voorraadbeheer",
         "visual_merchandising": "Visual Merchandising",
         "ecommerce": "E-commerce"
+      },
+      "construction": {
+        "mason": "Metselaar"
       }
     },
     "aboutMeLabel": "Over mij",
     "aboutMePlaceholder": "Vertel iets over jezelf..."
   },
-
   "filterBar": {
     "title": "Beschikbare Freelancers",
     "filters": {
@@ -116,21 +129,13 @@
       "workTypes": "Werksoorten"
     }
   },
-
-  "marketplace": {
-    "title": "Vind Je Perfecte Freelancer",
-    "subtitle": "Klaar - Af - Gaan"
-  },
-
-  "product_filters": "Productfilters",
-  "sort": "Sorteren",
   "nav": {
     "marketplace": "Marktplaats",
+    "admin": "Beheer",
     "about": "Over",
     "contact": "Contact",
     "signup": "Aanmelden"
   },
-
   "profileCard": {
     "availableFor": "Beschikbaar voor",
     "aboutMe": "Over mij",
@@ -138,27 +143,14 @@
     "specialty": "Specialisatie",
     "experience": "Ervaring"
   },
-
   "hero": {
     "title": "Vind de Perfecte Freelancer",
     "subtitle": "Maak verbinding met ervaren professionals die uw bedrijf helpen groeien"
   },
-
   "app": {
     "title": "Freelancer Platform",
     "description": "Vind de beste freelance mogelijkheden"
   },
-
-  "filters": {
-    "availability": {
-      "label": "Beschikbaarheid",
-      "placeholder": "Selecteer data",
-      "nextWeek": "Binnen 7 dagen",
-      "selectRange": "Selecteer periode",
-      "selectDay": "Selecteer specifieke dag"
-    }
-  },
-
   "profilePage": {
     "backToOverview": "Terug naar overzicht",
     "workArea": "Werkgebied",

@@ -5,7 +5,14 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 3000, // Optionally specify port
-    strictPort: true // Prevent Vite from trying other ports
+    strictPort: true, // Prevent Vite from trying other ports
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3001',
+        changeOrigin: true,
+        secure: false,
+      },
+    },
   },
   build: {
     outDir: 'build'
