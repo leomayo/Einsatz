@@ -1,53 +1,49 @@
 // src/components/FilterBar.jsx
 
-import React, { Fragment, useState, useMemo } from 'react';
+import React, { useState, useMemo, useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { 
-  Dialog, 
-  Disclosure, 
-  Popover, 
-  Transition,
-  PopoverButton,
-  PopoverPanel,
-  PopoverGroup,
-  Menu
-} from '@headlessui/react';
-import { XMarkIcon } from '@heroicons/react/24/outline';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
-import { CheckCircleIcon } from '@heroicons/react/20/solid';
 import AvailabilityFilter from './filters/AvailabilityFilter';
 
-const filters = [
-  {
-    id: 'industry',
-    name: 'filterBar.filters.industries',
-    options: [
-      {
-        value: 'tech',
-        label: 'freelancerSignUp.industries.tech',
-        workTypes: [
-          { value: 'software_dev', label: 'freelancerSignUp.workTypes.tech.software_dev' },
-          { value: 'data_science', label: 'freelancerSignUp.workTypes.tech.data_science' },
-          { value: 'cloud_engineering', label: 'freelancerSignUp.workTypes.tech.cloud_engineering' }
-        ]
-      },
-      {
-        value: 'finance',
-        label: 'freelancerSignUp.industries.finance',
-        workTypes: [
-          { value: 'financial_analysis', label: 'freelancerSignUp.workTypes.finance.financial_analysis' },
-          { value: 'investment_banking', label: 'freelancerSignUp.workTypes.finance.investment_banking' },
-          { value: 'risk_management', label: 'freelancerSignUp.workTypes.finance.risk_management' }
-        ]
+// Custom hook to handle clicks outside
+function useOutsideClick(ref, callback) {
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (ref.current && !ref.current.contains(event.target)) {
+        callback();
       }
-    ]
-  }
-];
+    }
+
+    function handleEscapeKey(event) {
+      if (event.key === 'Escape') {
+        callback();
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', handleEscapeKey);
+    
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleEscapeKey);
+    };
+  }, [ref, callback]);
+}
 
 export default function FilterBar({ profiles, onFilterChange }) {
   const { t } = useTranslation();
+  const [selectedIndustries, setSelectedIndustries] = useState([]);
+  const [selectedWorkTypes, setSelectedWorkTypes] = useState([]);
+  const [isIndustryOpen, setIsIndustryOpen] = useState(false);
+  const [isWorkTypeOpen, setIsWorkTypeOpen] = useState(false);
 
-  // Get unique industries and workTypes from all profiles
+  const industryRef = useRef(null);
+  const workTypeRef = useRef(null);
+
+  useOutsideClick(industryRef, () => setIsIndustryOpen(false));
+  useOutsideClick(workTypeRef, () => setIsWorkTypeOpen(false));
+
+  // Get unique industries and workTypes from profiles
   const { industries, workTypes } = useMemo(() => {
     const uniqueIndustries = new Set();
     const workTypesByIndustry = {};
@@ -55,7 +51,6 @@ export default function FilterBar({ profiles, onFilterChange }) {
     profiles?.forEach(profile => {
       profile.workPreferences.forEach(pref => {
         uniqueIndustries.add(pref.industry);
-        
         if (!workTypesByIndustry[pref.industry]) {
           workTypesByIndustry[pref.industry] = new Set();
         }
@@ -74,78 +69,104 @@ export default function FilterBar({ profiles, onFilterChange }) {
     };
   }, [profiles]);
 
-  const handleIndustryChange = (industry) => {
-    onFilterChange('industry', industry);
-  };
-
-  const handleWorkTypeChange = (workType) => {
-    onFilterChange('workType', workType);
-  };
-
   const handleAvailabilityChange = (availability) => {
     onFilterChange('availability', availability);
   };
 
   return (
     <div className="flex gap-4 items-center">
-      <Menu as="div" className="relative">
-        <Menu.Button className="flex items-center gap-2 px-3 py-2 text-sm rounded-md bg-white border border-gray-300 hover:bg-gray-50">
-          <span>Industry</span>
+      {/* Industry Filter */}
+      <div className="relative" ref={industryRef}>
+        <button
+          onClick={() => setIsIndustryOpen(!isIndustryOpen)}
+          className="flex items-center gap-2 px-3 py-2 text-sm rounded-md bg-white border border-gray-300 hover:bg-gray-50"
+        >
+          <span>
+            {selectedIndustries.length === 0 
+              ? t('filterBar.industry')
+              : `${t('filterBar.industry')} (${selectedIndustries.length})`}
+          </span>
           <ChevronDownIcon className="h-5 w-5 text-gray-400" />
-        </Menu.Button>
+        </button>
 
-        <Menu.Items className="absolute z-10 mt-1 w-56 bg-white rounded-md shadow-lg">
-          <div className="py-1">
-            {industries?.map((industry) => (
-              <Menu.Item key={industry}>
-                {({ active }) => (
-                  <button
-                    onClick={() => handleIndustryChange(industry)}
-                    className={`${
-                      active ? 'bg-gray-100' : ''
-                    } block w-full text-left px-4 py-2 text-sm text-gray-700`}
-                  >
-                    {t(`freelancerSignUp.industries.${industry}`)}
-                  </button>
-                )}
-              </Menu.Item>
-            ))}
-          </div>
-        </Menu.Items>
-      </Menu>
-
-      <Menu as="div" className="relative">
-        <Menu.Button className="flex items-center gap-2 px-3 py-2 text-sm rounded-md bg-white border border-gray-300 hover:bg-gray-50">
-          <span>Work Type</span>
-          <ChevronDownIcon className="h-5 w-5 text-gray-400" />
-        </Menu.Button>
-
-        <Menu.Items className="absolute z-10 mt-1 w-56 bg-white rounded-md shadow-lg">
-          <div className="py-1">
-            {Object.entries(workTypes || {}).map(([industry, types]) => (
-              <div key={industry}>
-                <div className="px-4 py-1 text-xs font-medium text-gray-500 bg-gray-50">
+        {isIndustryOpen && (
+          <div className="absolute z-10 mt-1 w-56 bg-white rounded-md shadow-lg">
+            <div className="py-1">
+              {industries.map(industry => (
+                <label 
+                  key={industry}
+                  className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                >
+                  <input
+                    type="checkbox"
+                    checked={selectedIndustries.includes(industry)}
+                    onChange={() => {
+                      const newSelection = selectedIndustries.includes(industry)
+                        ? selectedIndustries.filter(i => i !== industry)
+                        : [...selectedIndustries, industry];
+                      setSelectedIndustries(newSelection);
+                      onFilterChange('industry', industry, !selectedIndustries.includes(industry));
+                    }}
+                    className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600 mr-2"
+                  />
                   {t(`freelancerSignUp.industries.${industry}`)}
-                </div>
-                {types.map((type) => (
-                  <Menu.Item key={`${industry}-${type}`}>
-                    {({ active }) => (
-                      <button
-                        onClick={() => handleWorkTypeChange(type)}
-                        className={`${
-                          active ? 'bg-gray-100' : ''
-                        } block w-full text-left px-4 py-2 text-sm text-gray-700`}
+                </label>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Work Type Filter - only show if industries are selected */}
+      {selectedIndustries.length > 0 && (
+        <div className="relative" ref={workTypeRef}>
+          <button
+            onClick={() => setIsWorkTypeOpen(!isWorkTypeOpen)}
+            className="flex items-center gap-2 px-3 py-2 text-sm rounded-md bg-white border border-gray-300 hover:bg-gray-50"
+          >
+            <span>
+              {selectedWorkTypes.length === 0 
+                ? t('filterBar.workType')
+                : `${t('filterBar.workType')} (${selectedWorkTypes.length})`}
+            </span>
+            <ChevronDownIcon className="h-5 w-5 text-gray-400" />
+          </button>
+
+          {isWorkTypeOpen && (
+            <div className="absolute z-10 mt-1 w-56 bg-white rounded-md shadow-lg">
+              <div className="py-1">
+                {selectedIndustries.map(industry => (
+                  <div key={industry}>
+                    <div className="px-4 py-1 text-xs font-medium text-gray-500 bg-gray-50">
+                      {t(`freelancerSignUp.industries.${industry}`)}
+                    </div>
+                    {workTypes[industry]?.map(type => (
+                      <label
+                        key={type}
+                        className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                       >
+                        <input
+                          type="checkbox"
+                          checked={selectedWorkTypes.includes(type)}
+                          onChange={() => {
+                            const newSelection = selectedWorkTypes.includes(type)
+                              ? selectedWorkTypes.filter(t => t !== type)
+                              : [...selectedWorkTypes, type];
+                            setSelectedWorkTypes(newSelection);
+                            onFilterChange('workType', type, !selectedWorkTypes.includes(type));
+                          }}
+                          className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600 mr-2"
+                        />
                         {t(`freelancerSignUp.workTypes.${industry}.${type}`)}
-                      </button>
-                    )}
-                  </Menu.Item>
+                      </label>
+                    ))}
+                  </div>
                 ))}
               </div>
-            ))}
-          </div>
-        </Menu.Items>
-      </Menu>
+            </div>
+          )}
+        </div>
+      )}
 
       <AvailabilityFilter onChange={handleAvailabilityChange} />
     </div>

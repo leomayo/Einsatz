@@ -24,6 +24,45 @@ const nlTranslations = {
       specialtyNote: "Specialisatie",
       experienceNote: "Ervaring"
     }
+  },
+  filterBar: {
+    industry: "Branche",
+    workType: "Type Werk",
+    filters: {
+      industries: "Branches",
+      workTypes: "Type Werk"
+    }
+  }
+};
+
+const enTranslations = {
+  freelancerSignUp: {
+    title: "Sign Up as Freelancer",
+    name: "Name",
+    email: "Email",
+    submit: "Submit",
+    cancel: "Cancel",
+    workPreferencesForm: {
+      title: "Work Preferences",
+      description: "Add your work preferences to find the best matches",
+      addNew: "New Work Preference",
+      addAnother: "Add Another Work Preference",
+      remove: "Remove",
+      selectIndustry: "Select Industry",
+      selectWorkType: "Select Work Type",
+      chooseIndustry: "Choose an industry...",
+      chooseWorkType: "Choose a work type...",
+      specialtyNote: "Specialization",
+      experienceNote: "Experience"
+    }
+  },
+  filterBar: {
+    industry: "Industry",
+    workType: "Work Type",
+    filters: {
+      industries: "Industries",
+      workTypes: "Work Types"
+    }
   }
 };
 
@@ -41,9 +80,10 @@ export default function FreelancerSignUp({ isOpen, onClose, onSignUp }) {
   const [isAddingNew, setIsAddingNew] = useState(true);
   
   useEffect(() => {
-    // Force add the translations and switch to Dutch
+    // Add both English and Dutch translations
+    i18n.addResourceBundle('en', 'translation', enTranslations, true, true);
     i18n.addResourceBundle('nl', 'translation', nlTranslations, true, true);
-    i18n.changeLanguage('nl');
+    i18n.changeLanguage('nl'); // or 'en' depending on your default
   }, []);
 
   console.log('Current translations:', i18n.store.data);
