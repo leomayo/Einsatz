@@ -11,6 +11,8 @@ const useStore = create(
           name: 'John Doe',
           email: 'john@example.com',
           avatar: null,
+          postalCode: '1011 AB',
+          radius: 5,
           aboutMe: 'Full-stack developer with a passion for clean code and modern technologies. Always eager to learn new technologies and solve complex problems.',
           workPreferences: [
             {
@@ -32,6 +34,8 @@ const useStore = create(
           name: 'Jane Smith',
           email: 'jane@example.com',
           avatar: null,
+          postalCode: '1011 AB',
+          radius: 5,
           aboutMe: 'Data scientist specializing in machine learning and AI. Experienced in both finance and healthcare sectors.',
           workPreferences: [
             {
@@ -51,6 +55,8 @@ const useStore = create(
           profiles: [...state.profiles, { 
             ...profile, 
             id: profile.id.toString(),
+            postalCode: profile.postalCode || '',
+            radius: profile.radius || 5,
             workPreferences: profile.workPreferences.map(pref => ({
               ...pref,
               rating: pref.rating || 4,

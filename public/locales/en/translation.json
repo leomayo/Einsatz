@@ -162,6 +162,8 @@
   "profilePage": {
     "backToOverview": "Back to overview",
     "workArea": "Work Area",
+    "postalCode": "Postal Code",
+    "radius": "Radius",
     "availability": "Availability",
     "portfolio": "Portfolio",
     "workTypes": "Available for",

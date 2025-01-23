@@ -172,6 +172,8 @@
       "specific": "Specifiek",
       "certifications": "Certificeringen",
       "experience": "Ervaring"
-    }
+    },
+    "postalCode": "Postcode",
+    "radius": "Straal"
   }
 }

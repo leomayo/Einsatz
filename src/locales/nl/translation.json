@@ -1,0 +1,12 @@
+{
+  "workPreferences": {
+    "workArea": "Werkgebied",
+    "postalCode": "Postcode",
+    "radius": "Radius"
+  },
+  "profilePage": {
+    "workArea": "Werkgebied",
+    "postalCode": "Postcode",
+    "radius": "Werkradius"
+  }
+} 
