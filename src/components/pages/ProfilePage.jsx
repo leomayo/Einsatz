@@ -14,15 +14,11 @@ const ProfilePage = () => {
   
   // Debug logging
   console.log('Debug:', {
-    isInitialized: i18n.isInitialized,
-    profile: profiles.find(p => p.id === (typeof profiles[0]?.id === 'number' ? Number(id) : id)),
-    translation: t('profilePage.sections.specific'),
-    allProfiles: profiles,
-    currentLanguage: i18n.language,
-    hasTranslations: i18n.hasResourceBundle(i18n.language, 'translation')
+    profileId: id,
+    profiles: profiles,
   });
 
-  // Convert the ID to match the type in our store
+  // Simplified profile lookup - don't try to convert ID types
   const profile = profiles.find(p => p.id === (typeof profiles[0]?.id === 'number' ? Number(id) : id));
 
   // Wait for translations to be loaded

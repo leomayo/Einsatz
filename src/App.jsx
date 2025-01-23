@@ -11,58 +11,51 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ProfilePage from './components/pages/ProfilePage';
 import AdminDashboard from './components/pages/AdminDashboard';
 import AdminPanel from './components/AdminPanel';
+import { generateWorkTypeMockData } from './utils/mockData';
 
-// Define defaultProfiles before using it in useState
-const defaultProfiles = [
+// Update initial profiles to use string IDs
+const initialProfiles = [
   {
-    id: 1,
+    id: '1', // Changed from 1 to '1'
     name: 'John Doe',
-    email: 'john@example.com',
-    avatar: '/path/to/avatar1.jpg',
-    aboutMe: {
-      en: "Full-stack developer with a passion for clean code and user-friendly interfaces. Always eager to learn new technologies and solve complex problems.",
-      nl: "Full-stack developer met een passie voor schone code en gebruiksvriendelijke interfaces. Altijd eager om nieuwe technologieën te leren en complexe problemen op te lossen."
-    },
+    aboutMe: 'Experienced professional with a passion for technology and innovation.',
     workPreferences: [
       {
         industry: 'tech',
         workType: 'software_dev',
-        specialtyNote: 'Full-stack development with React and Node.js',
-        certifications: 'AWS Certified Developer, MongoDB Certified Developer',
-        experienceNote: '8+ years in web development, led 5 major projects'
+        specialtyNote: 'Full-stack development',
+        ...generateWorkTypeMockData()
       },
       {
         industry: 'tech',
         workType: 'cloud_engineering',
-        specialtyNote: 'AWS and Azure cloud solutions',
-        certifications: 'AWS Solutions Architect, Azure Cloud Architect',
-        experienceNote: '5 years of cloud infrastructure management'
+        specialtyNote: 'AWS Certified',
+        ...generateWorkTypeMockData()
       }
     ]
   },
   {
-    id: 2,
-    name: 'Jane Doe',
-    email: 'jane@example.com',
-    avatar: '/path/to/avatar2.jpg',
-    aboutMe: {
-      en: "Data scientist specializing in machine learning and AI solutions. Experienced in both finance and healthcare sectors.",
-      nl: "Data scientist gespecialiseerd in machine learning en AI-oplossingen. Ervaren in zowel de financiële als zorgsector."
-    },
+    id: '2', // Changed from 2 to '2'
+    name: 'Jane Smith',
+    aboutMe: 'Financial expert with a focus on risk management and analysis.',
     workPreferences: [
       {
         industry: 'finance',
-        workType: 'financial_analysis',
-        specialtyNote: 'Risk assessment and predictive modeling',
-        certifications: 'CFA Level III, Financial Risk Manager (FRM)',
-        experienceNote: '6 years in quantitative analysis and risk modeling'
+        workType: 'risk_management',
+        specialtyNote: 'Basel III expertise',
+        ...generateWorkTypeMockData()
       },
       {
-        industry: 'tech',
-        workType: 'data_science',
-        specialtyNote: 'Machine learning and AI applications',
-        certifications: 'Google Certified Professional Data Engineer, Deep Learning Specialization',
-        experienceNote: '4 years of implementing ML solutions in production'
+        industry: 'finance',
+        workType: 'financial_analysis',
+        specialtyNote: 'Corporate finance',
+        ...generateWorkTypeMockData()
+      },
+      {
+        industry: 'finance',
+        workType: 'investment_banking',
+        specialtyNote: 'M&A specialist',
+        ...generateWorkTypeMockData()
       }
     ]
   }
@@ -147,22 +140,28 @@ function App() {
       education: ['teaching', 'curriculum_development', 'educational_technology']
     };
 
+    // Generate 1-3 random work preferences
+    const numPreferences = Math.floor(Math.random() * 3) + 1;
+    const workPreferences = [];
+
+    for (let i = 0; i < numPreferences; i++) {
+      const randomIndustry = industries[Math.floor(Math.random() * industries.length)];
+      const industryWorkTypes = workTypes[randomIndustry];
+      const randomWorkType = industryWorkTypes[Math.floor(Math.random() * industryWorkTypes.length)];
+      
+      workPreferences.push({
+        industry: randomIndustry,
+        workType: randomWorkType,
+        specialtyNote: `Specialty note ${i + 1}`,
+        ...generateWorkTypeMockData() // Add mock data for each work preference
+      });
+    }
+
     const randomProfile = {
-      id: Date.now(),
-      name: `Test User ${Math.floor(Math.random() * 1000)}`,
-      email: `test${Math.floor(Math.random() * 1000)}@example.com`,
-      avatar: null,
-      aboutMe: "This is a test profile with randomly generated work preferences.",
-      workPreferences: Array.from({ length: Math.floor(Math.random() * 5) + 2 }, () => {
-        const industry = industries[Math.floor(Math.random() * industries.length)];
-        return {
-          industry,
-          workType: workTypes[industry][Math.floor(Math.random() * workTypes[industry].length)],
-          specialtyNote: `Test specialty ${Math.floor(Math.random() * 100)}`,
-          certifications: `Test certification ${Math.floor(Math.random() * 100)}`,
-          experienceNote: `${Math.floor(Math.random() * 10) + 1} years of experience in this field`
-        };
-      })
+      id: Date.now().toString(),
+      name: `Test Profile ${profiles.length + 1}`,
+      aboutMe: "This is a test profile with automatically generated work preferences.",
+      workPreferences: workPreferences
     };
 
     addProfile(randomProfile);

@@ -64,30 +64,18 @@
     "email": "E-mail",
     "submit": "Aanmelden",
     "cancel": "Annuleren",
-    "specialtyLabel": "Specialisatie",
-    "experienceLabel": "Ervaring",
-    "workPreferencesForm": {
-      "title": "Werkvoorkeuren",
-      "description": "Voeg je werkvoorkeuren toe om de beste matches te vinden",
-      "addNew": "Nieuwe Werkvoorkeur",
-      "addAnother": "Nog een Werkvoorkeur Toevoegen",
-      "remove": "Verwijderen",
-      "selectIndustry": "Selecteer Branche",
-      "selectWorkType": "Selecteer Type Werk",
-      "chooseIndustry": "Kies een branche...",
-      "chooseWorkType": "Kies een type werk..."
-    },
     "industries": {
       "tech": "Technologie",
       "finance": "Financiën",
       "healthcare": "Gezondheidszorg",
       "education": "Onderwijs",
       "retail": "Detailhandel",
-      "construction": "Bouw"
+      "construction": "Bouw",
+      "wild_card": "Wild Card"
     },
     "workTypes": {
       "tech": {
-        "software_dev": "Softwareontwikkeling",
+        "software_dev": "Software Ontwikkeling",
         "data_science": "Data Science",
         "cloud_engineering": "Cloud Engineering"
       },
@@ -103,7 +91,7 @@
       },
       "education": {
         "teaching": "Lesgeven",
-        "curriculum_development": "Curriculumontwikkeling",
+        "curriculum_development": "Curriculum Ontwikkeling",
         "educational_technology": "Onderwijstechnologie",
         "student_counseling": "Studentenbegeleiding"
       },
@@ -111,14 +99,29 @@
         "sales": "Verkoop",
         "inventory_management": "Voorraadbeheer",
         "visual_merchandising": "Visual Merchandising",
-        "ecommerce": "E-commerce"
+        "ecommerce": "E-commerce",
+        "test": "Tester"
       },
       "construction": {
         "mason": "Metselaar"
+      },
+      "wild_card": {
+        "wild_card": "Wild Card"
       }
     },
-    "aboutMeLabel": "Over mij",
-    "aboutMePlaceholder": "Vertel iets over jezelf..."
+    "specialtyLabel": "Specialisatie",
+    "experienceLabel": "Ervaring",
+    "workPreferencesForm": {
+      "title": "Werkvoorkeuren",
+      "description": "Voeg je werkvoorkeuren toe om de beste matches te vinden",
+      "addNew": "Nieuwe Werkvoorkeur",
+      "addAnother": "Nog een Werkvoorkeur Toevoegen",
+      "remove": "Verwijderen",
+      "selectIndustry": "Selecteer Branche",
+      "selectWorkType": "Selecteer Type Werk",
+      "chooseIndustry": "Kies een branche...",
+      "chooseWorkType": "Kies een type werk..."
+    }
   },
   "filterBar": {
     "title": "Beschikbare Freelancers",

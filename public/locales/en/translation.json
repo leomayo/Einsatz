@@ -83,7 +83,8 @@
       "healthcare": "Healthcare",
       "education": "Education",
       "retail": "Retail",
-      "construction": "Construction"
+      "construction": "Construction",
+      "wild_card": "Wild Card"
     },
     "workTypes": {
       "tech": {
@@ -111,10 +112,14 @@
         "sales": "Sales",
         "inventory_management": "Inventory Management",
         "visual_merchandising": "Visual Merchandising",
-        "ecommerce": "E-commerce"
+        "ecommerce": "E-commerce",
+        "test": "Tester"
       },
       "construction": {
         "mason": "Mason"
+      },
+      "wild_card": {
+        "wild_card": "Wild Card"
       }
     },
     "aboutMeLabel": "About me",
